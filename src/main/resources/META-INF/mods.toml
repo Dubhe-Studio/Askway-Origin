@@ -1,0 +1,24 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+license = "LGPL-3.0"
+[[mods]]
+modId = "askway_origin"
+version = "${file.jarVersion}"
+displayName = "Askway-Origin"
+updateJSONURL = "https://api.github.com/repos/Dubhe-Studio/Askway-Origin/releases/latest"
+authors = ["Dubhe-Studio"]
+description = '''
+Askway series mod core
+'''
+[[dependencies.askway_origin]]
+modId = "forge"
+mandatory = true
+versionRange = "[45,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.askway_origin]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.4,1.20)"
+ordering = "NONE"
+side = "BOTH"
