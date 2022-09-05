@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.dubhe.askway.origin.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "askway.origin.refmap.json",
+  "mixins": [
+    "BlockItemMixin",
+    "ServerPlayerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
