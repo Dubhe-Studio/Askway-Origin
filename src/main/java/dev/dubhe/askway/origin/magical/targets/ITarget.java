@@ -2,6 +2,7 @@ package dev.dubhe.askway.origin.magical.targets;
 
 import dev.dubhe.askway.origin.magical.MagicGroup;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,4 +24,9 @@ public interface ITarget { // 目标
      * @return 目标坐标
      */
     Vec3 getPos();
+
+    /**
+     * @return 目标所在世界
+     */
+    Level getLevel();
 }

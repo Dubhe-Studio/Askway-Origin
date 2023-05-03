@@ -29,7 +29,8 @@ public class BlockTarget implements ITarget {
         return this.getState().getBlock();
     }
 
-    public @NotNull Level getLevel() {
+    @Override
+    public Level getLevel() {
         return level;
     }
 
