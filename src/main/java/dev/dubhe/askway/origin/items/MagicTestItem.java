@@ -37,7 +37,6 @@ public class MagicTestItem extends Item {
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-        if (context.getLevel().isClientSide) return InteractionResult.PASS;
         int energy = MagicTestItem.getEnergy(context.getItemInHand());
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -50,7 +49,6 @@ public class MagicTestItem extends Item {
 
     @Override
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
-        if (!(player instanceof ServerPlayer)) return InteractionResult.PASS;
         int energy = MagicTestItem.getEnergy(stack);
         ICaster caster = new LivingEntityCaster(player);
         ITarget target = new EntityTarget(entity);
