@@ -17,7 +17,6 @@ import java.util.Map;
 
 @Mod(AskwayOrigin.MODID)
 public class AskwayOrigin {
-
     public static final String MODID = "askway_origin";
     public static final Logger LOGGER = LogUtils.getLogger();
 

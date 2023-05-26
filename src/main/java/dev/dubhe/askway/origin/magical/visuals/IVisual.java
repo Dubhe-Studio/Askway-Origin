@@ -5,6 +5,8 @@ import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 
 public interface IVisual { // 法术视效
+    IVisual STRAIGHT_LINE = new StraightLineVisual();
+
     /**
      * 展示法术视效
      *

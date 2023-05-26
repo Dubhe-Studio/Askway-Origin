@@ -2,8 +2,8 @@ package dev.dubhe.askway.origin.magical.casters;
 
 import dev.dubhe.askway.origin.magical.MagicGroup;
 import dev.dubhe.askway.origin.magical.modes.IMode;
+import dev.dubhe.askway.origin.magical.goals.IGoal;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
-import dev.dubhe.askway.origin.magical.targets.ITargets;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -16,12 +16,12 @@ public interface ICaster { // 施法者
      * 施放法术
      *
      * @param mode    施放方式
-     * @param targets 目标类型
+     * @param goal 目标类型
      * @param direct  直接目标
      * @param magics  法术组
      */
-    default void execute(@Nonnull IMode mode, ITargets targets, ITarget direct, MagicGroup @NotNull ... magics) {
-        mode.execute(this, targets, direct, magics);
+    default void execute(@Nonnull IMode mode, IGoal goal, ITarget direct, MagicGroup @NotNull ... magics) {
+        mode.execute(this, goal, direct, magics);
     }
 
     /**

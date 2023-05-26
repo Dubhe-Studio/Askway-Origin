@@ -9,7 +9,7 @@ import dev.dubhe.askway.origin.magical.modes.IMode;
 import dev.dubhe.askway.origin.magical.targets.BlockTarget;
 import dev.dubhe.askway.origin.magical.targets.EntityTarget;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
-import dev.dubhe.askway.origin.magical.targets.ITargets;
+import dev.dubhe.askway.origin.magical.goals.IGoal;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -37,25 +37,23 @@ public class MagicTestItem extends Item {
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-        if (context.getLevel().isClientSide) return InteractionResult.PASS;
         int energy = MagicTestItem.getEnergy(context.getItemInHand());
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         ICaster caster = new LivingEntityCaster(context.getPlayer());
         ITarget target = new BlockTarget(level, pos);
         MagicGroup fire = new MagicGroup(AbstractElement.FIRE, energy).addEffects(IEffect.BREAK);
-        caster.execute(IMode.TOUCH, ITargets.EXACT, target, fire);
+        caster.execute(IMode.TOUCH, IGoal.EXACT, target, fire);
         return InteractionResult.CONSUME;
     }
 
     @Override
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
-        if (!(player instanceof ServerPlayer)) return InteractionResult.PASS;
         int energy = MagicTestItem.getEnergy(stack);
         ICaster caster = new LivingEntityCaster(player);
         ITarget target = new EntityTarget(entity);
         MagicGroup fire = new MagicGroup(AbstractElement.FIRE, energy).addEffects(IEffect.BREAK);
-        caster.execute(IMode.TOUCH, ITargets.EXACT, target, fire);
+        caster.execute(IMode.TOUCH, IGoal.EXACT, target, fire);
         return InteractionResult.CONSUME;
     }
 

@@ -1,6 +1,7 @@
 package dev.dubhe.askway.origin.magical.elements;
 
 import dev.dubhe.askway.origin.utils.Color;
+import org.joml.Vector3f;
 
 public abstract class AbstractElement { // 元素
     public static final AbstractElement FIRE = new AbstractElement(Color.FIRE_RED, true, false, true) {

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(BlockItem.class)
-public class BlockItemMixin {
+public abstract class BlockItemMixin {
     @Inject(method = "appendHoverText", at = @At("RETURN"))
     private void appendHoverText(ItemStack stack, Level level, List<Component> components, TooltipFlag flag, CallbackInfo ci) {
         if (stack.getItem() instanceof BlockItem item) {

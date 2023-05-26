@@ -5,6 +5,7 @@ import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
+import net.minecraft.server.level.ServerLevel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -93,12 +94,19 @@ public class MagicGroup {
         return new MagicGroup(element, energy / count, effects, visuals);
     }
 
+    /**
+     * 执行法术
+     *
+     * @param caster 执行者
+     * @param target 目标
+     */
     public void execute(ICaster caster, ITarget target) {
         int weights = 0;
         for (IEffect effect : this.effects) weights += effect.getWeights();
         for (IVisual visual : this.visuals) weights += visual.getWeights();
         int energy = this.energy / weights;
-        for (IVisual visual : this.visuals) visual.display(caster, element, energy * visual.getWeights(), target);
-        for (IEffect effect : this.effects) effect.execute(caster, element, energy * effect.getWeights(), target);
+        if (target.getLevel() instanceof ServerLevel)
+            for (IEffect effect : this.effects) effect.execute(caster, element, energy * effect.getWeights(), target);
+        else for (IVisual visual : this.visuals) visual.display(caster, element, energy * visual.getWeights(), target);
     }
 }

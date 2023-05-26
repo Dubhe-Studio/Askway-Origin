@@ -1,6 +1,5 @@
 package dev.dubhe.askway.origin.magical.effects;
 
-import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.BlockTarget;
@@ -13,10 +12,9 @@ public class BreakEffect implements IEffect {
         if (target instanceof EntityTarget entity) {
             entity.getEntity().hurt(caster.getDamageSource(), energy);
         } else if (target instanceof BlockTarget block) {
-            float destroySpeed = block.getState().getDestroySpeed(block.level(), block.blockPos());
-            AskwayOrigin.LOGGER.info("destroySpeed:%s,energy:%s".formatted(destroySpeed, energy));
+            float destroySpeed = block.getState().getDestroySpeed(block.getLevel(), block.getBlockPos());
             if (destroySpeed > 0 && destroySpeed <= energy) {
-                block.level().destroyBlock(block.blockPos(), true);
+                block.getLevel().destroyBlock(block.getBlockPos(), true);
             }
         }
     }

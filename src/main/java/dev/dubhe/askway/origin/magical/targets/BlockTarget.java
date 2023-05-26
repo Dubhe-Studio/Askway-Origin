@@ -7,7 +7,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public record BlockTarget(Level level, BlockPos blockPos) implements ITarget {
+public class BlockTarget implements ITarget {
+    private final Level level;
+    private final BlockPos blockPos;
+
+    public BlockTarget(Level level, BlockPos blockPos) {
+        this.level = level;
+        this.blockPos = blockPos;
+    }
 
     @Override
     public @NotNull Vec3 getPos() {
@@ -20,5 +27,14 @@ public record BlockTarget(Level level, BlockPos blockPos) implements ITarget {
 
     public @NotNull Block getBlock() {
         return this.getState().getBlock();
+    }
+
+    @Override
+    public Level getLevel() {
+        return level;
+    }
+
+    public BlockPos getBlockPos() {
+        return blockPos;
     }
 }
