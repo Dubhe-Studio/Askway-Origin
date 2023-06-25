@@ -1,2 +1,2 @@
 # Askway-Origin
-Askway series mod core
+Askway series mod core.

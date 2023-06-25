@@ -23,6 +23,6 @@ public class EntityTarget implements ITarget{
 
     @Override
     public Level getLevel() {
-        return entity.getLevel();
+        return entity.level();
     }
 }

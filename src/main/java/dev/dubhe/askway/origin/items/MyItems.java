@@ -8,11 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class MyItems {
     public static final Map<String, Item> ITEM_MAP = new HashMap<>();
-    public static final Consumer<CreativeModeTab.Builder> ORIGIN = builder -> builder
+    public static final CreativeModeTab ORIGIN = CreativeModeTab.builder()
             .title(Component.translatable("tab.askway_origin.origin"))
             .icon(() -> new ItemStack(MyItems.MAGIC_TEST))
             .displayItems((parameters, output) -> {
@@ -20,7 +19,7 @@ public class MyItems {
                 output.accept(MyItems.withEnergy(new ItemStack(MyItems.MAGIC_TEST), 30));
                 output.accept(MyItems.withEnergy(new ItemStack(MyItems.MAGIC_TEST), 50));
                 output.accept(MyItems.withEnergy(new ItemStack(MyItems.MAGIC_TEST), 60));
-            });
+            }).build();
 
     public static final MagicTestItem MAGIC_TEST = register("magic_test", new MagicTestItem(defaultProperties()));
 

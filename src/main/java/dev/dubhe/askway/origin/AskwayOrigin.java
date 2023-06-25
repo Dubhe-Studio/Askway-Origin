@@ -5,7 +5,6 @@ import dev.dubhe.askway.origin.items.MyItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -32,11 +31,8 @@ public class AskwayOrigin {
         }
     }
 
-    public void registerCreativeModeTab(@NotNull CreativeModeTabEvent.Register event) {
-        event.registerCreativeModeTab(
-                AskwayOrigin.of("origin"),
-                MyItems.ORIGIN
-        );
+    public void registerCreativeModeTab(@NotNull RegisterEvent event) {
+        event.register(Registries.CREATIVE_MODE_TAB, AskwayOrigin.of("origin"), () -> MyItems.ORIGIN);
     }
 
     public static @NotNull ResourceLocation of(String str) {
