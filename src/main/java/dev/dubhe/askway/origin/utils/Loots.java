@@ -16,4 +16,5 @@ public class Loots {
     public static void dropWhenSilkTouch(RegistrateBlockLootTables lootTables, Block block) {
         lootTables.dropWhenSilkTouch(block);
     }
+
 }
