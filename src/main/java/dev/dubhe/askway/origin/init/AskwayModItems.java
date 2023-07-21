@@ -1,16 +1,22 @@
 package dev.dubhe.askway.origin.init;
 
+import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.items.MagicTestItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.LeavesBlock;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AskwayModItems {
+
+    private static final Registrate REGISTRATE = AskwayOrigin.getRegistrate();
     public static final Map<String, Item> ITEM_MAP = new HashMap<>();
     public static final CreativeModeTab ORIGIN = CreativeModeTab.builder()
             .title(Component.translatable("tab.askway_origin.origin"))

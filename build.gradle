@@ -18,6 +18,8 @@ apply plugin: 'org.spongepowered.mixin'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+jarJar.enable()
+
 archivesBaseName = mod_name
 group = maven_group
 version = mod_version
@@ -89,11 +91,19 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    maven {
+        name "Registrate"
+        url "https://maven.tterrag.com/"
+    }
+    mavenLocal()
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
+    jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[MC1.20,MC1.21)")
 }
 
 jar {
@@ -108,9 +118,19 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
+    classifier 'slim'
+}
+
+reobf {
+    jarJar { }
 }
 
 jar.finalizedBy('reobfJar')
+tasks.jarJar.finalizedBy('reobfJarJar')
+
+tasks.jarJar.configure {
+    classifier ''
+}
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
