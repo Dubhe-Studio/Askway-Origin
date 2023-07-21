@@ -1,7 +1,7 @@
 package dev.dubhe.askway.origin;
 
 import com.mojang.logging.LogUtils;
-import dev.dubhe.askway.origin.items.MyItems;
+import dev.dubhe.askway.origin.init.AskwayModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -26,13 +26,13 @@ public class AskwayOrigin {
     }
 
     public void register(@NotNull RegisterEvent event) {
-        for (Map.Entry<String, Item> entry : MyItems.ITEM_MAP.entrySet()) {
+        for (Map.Entry<String, Item> entry : AskwayModItems.ITEM_MAP.entrySet()) {
             event.register(Registries.ITEM, AskwayOrigin.of(entry.getKey()), entry::getValue);
         }
     }
 
     public void registerCreativeModeTab(@NotNull RegisterEvent event) {
-        event.register(Registries.CREATIVE_MODE_TAB, AskwayOrigin.of("origin"), () -> MyItems.ORIGIN);
+        event.register(Registries.CREATIVE_MODE_TAB, AskwayOrigin.of("origin"), () -> AskwayModItems.ORIGIN);
     }
 
     public static @NotNull ResourceLocation of(String str) {
