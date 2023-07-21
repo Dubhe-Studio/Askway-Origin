@@ -7,7 +7,13 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
+
 public class AskwayModCreativeModeTabs {
+
+    static {
+        REGISTRATE.addRawLang("tab.askway_origin.origin", "Askway Origin");
+    }
     public static final DeferredRegister<CreativeModeTab> TAB_REGISTER = DeferredRegister
             .create(Registries.CREATIVE_MODE_TAB, AskwayOrigin.MODID);
 
