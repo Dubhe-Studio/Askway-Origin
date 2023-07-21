@@ -1,46 +1,32 @@
 package dev.dubhe.askway.origin.init;
 
-import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.items.MagicTestItem;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.LeavesBlock;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
+import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 
 public class AskwayModItems {
 
-    private static final Registrate REGISTRATE = AskwayOrigin.getRegistrate();
-    public static final Map<String, Item> ITEM_MAP = new HashMap<>();
-    public static final CreativeModeTab ORIGIN = CreativeModeTab.builder()
-            .title(Component.translatable("tab.askway_origin.origin"))
-            .icon(() -> new ItemStack(AskwayModItems.MAGIC_TEST))
-            .displayItems((parameters, output) -> {
-                output.accept(AskwayModItems.withEnergy(new ItemStack(AskwayModItems.MAGIC_TEST), 10));
-                output.accept(AskwayModItems.withEnergy(new ItemStack(AskwayModItems.MAGIC_TEST), 30));
-                output.accept(AskwayModItems.withEnergy(new ItemStack(AskwayModItems.MAGIC_TEST), 50));
-                output.accept(AskwayModItems.withEnergy(new ItemStack(AskwayModItems.MAGIC_TEST), 60));
-            }).build();
 
-    public static final MagicTestItem MAGIC_TEST = register("magic_test", new MagicTestItem(defaultProperties()));
-
-    public static <T extends Item> T register(String name, T item) {
-        AskwayModItems.ITEM_MAP.put(name, item);
-        return item;
+    static {
+        if (AskwayModCreativeModeTabs.ORIGIN.getKey() != null) {
+            REGISTRATE.defaultCreativeTab(AskwayModCreativeModeTabs.ORIGIN.getKey());
+        }
     }
+
+    public static final RegistryEntry<MagicTestItem> MAGIC_TEST = REGISTRATE
+            .item("magic_test", MagicTestItem::new)
+            .register();
+
 
     public static @NotNull ItemStack withEnergy(@NotNull ItemStack stack, int energy) {
         stack.getOrCreateTag().putInt("energy", energy);
         return stack;
     }
 
-    public static Item.@NotNull Properties defaultProperties() {
-        return new Item.Properties();
+    public static void register() {
     }
+
 }
