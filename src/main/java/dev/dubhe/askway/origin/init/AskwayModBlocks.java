@@ -167,6 +167,50 @@ public class AskwayModBlocks {
             .register();
 
 
+    public static final RegistryEntry<RotatedPillarBlock> LIGHTNING_PEACH_LOG = REGISTRATE.block("lightning_peach_log", RotatedPillarBlock::new)
+            .tag(AskwayModTags.Blocks.LIGHTNING_PEACH_LOGS)
+            .initialProperties(() -> Blocks.OAK_LOG)
+            .blockstate((ctx, provider) -> provider.logBlock(ctx.get()))
+            .loot(Loots::dropSelf)
+            .item()
+            .tag(AskwayModTags.Items.LIGHTNING_PEACH_LOGS)
+            .build()
+            .register();
+
+    public static final RegistryEntry<RotatedPillarBlock> LIGHTNING_PEACH_WOOD = REGISTRATE.block("lightning_peach_wood", RotatedPillarBlock::new)
+            .tag(AskwayModTags.Blocks.LIGHTNING_PEACH_LOGS)
+            .initialProperties(() -> Blocks.OAK_WOOD)
+            .blockstate((ctx, provider) -> provider.axisBlock(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName().replace("_wood", "_log")),
+                    provider.modLoc("block/" + ctx.getName().replace("_wood", "_log"))
+            ))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 1)
+                    .requires(Ingredient.of(LIGHTNING_PEACH_LOG.get()))
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(LIGHTNING_PEACH_LOG.get()))
+                    .save(provider))
+            .item()
+            .tag(AskwayModTags.Items.LIGHTNING_PEACH_LOGS)
+            .build()
+            .register();
+
+    public static final RegistryEntry<Block> LIGHTNING_PEACH_PLANKS = REGISTRATE.block("lightning_peach_planks", Block::new)
+            .tag(BlockTags.PLANKS)
+            .initialProperties(() -> Blocks.OAK_PLANKS)
+            .blockstate((ctx, provider) -> provider.simpleBlock(ctx.get()))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 4)
+                    .requires(Ingredient.of(AskwayModTags.Items.LIGHTNING_PEACH_LOGS))
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(AskwayModTags.Items.LIGHTNING_PEACH_LOGS))
+                    .save(provider)
+            )
+            .item()
+            .tag(ItemTags.PLANKS)
+            .build()
+            .register();
+
+
     public static void register() {
     }
 

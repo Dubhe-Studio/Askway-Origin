@@ -20,7 +20,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        tag(BlockTags.LOGS_THAT_BURN).addTag(AskwayModTags.Blocks.WILLOW_LOGS);
+        tag(BlockTags.LOGS_THAT_BURN)
+                .addTag(AskwayModTags.Blocks.WILLOW_LOGS)
+                .addTag(AskwayModTags.Blocks.PEACH_LOGS);
+        tag(BlockTags.LOGS).addTag(AskwayModTags.Blocks.LIGHTNING_PEACH_LOGS);
 
     }
 }

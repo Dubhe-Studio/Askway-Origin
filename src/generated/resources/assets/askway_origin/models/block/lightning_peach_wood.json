@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "askway_origin:block/lightning_peach_log",
+    "side": "askway_origin:block/lightning_peach_log"
+  }
+}

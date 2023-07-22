@@ -12,6 +12,7 @@ public class AskwayModTags {
     public static final class Blocks {
         public static final TagKey<Block> WILLOW_LOGS = mod("willow_logs");
         public static final TagKey<Block> PEACH_LOGS = mod("peach_logs");
+        public static final TagKey<Block> LIGHTNING_PEACH_LOGS = mod("lightning_peach_logs");
     }
 
     private static TagKey<Block> forge(String path) {
@@ -26,6 +27,7 @@ public class AskwayModTags {
 
         public static final TagKey<Item> WILLOW_LOGS = mod("willow_logs");
         public static final TagKey<Item> PEACH_LOGS = mod("peach_logs");
+        public static final TagKey<Item> LIGHTNING_PEACH_LOGS = mod("lightning_peach_logs");
         private static TagKey<Item> forge(String path) {
             return ItemTags.create(new ResourceLocation("forge", path));
         }

@@ -21,7 +21,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
 
-        tag(ItemTags.LOGS_THAT_BURN).addTag(AskwayModTags.Items.WILLOW_LOGS);
+        tag(ItemTags.LOGS_THAT_BURN)
+                .addTag(AskwayModTags.Items.WILLOW_LOGS)
+                .addTag(AskwayModTags.Items.PEACH_LOGS);
+        tag(ItemTags.LOGS).addTag(AskwayModTags.Items.LIGHTNING_PEACH_LOGS);
 
     }
 }
