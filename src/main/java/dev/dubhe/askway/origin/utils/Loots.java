@@ -17,4 +17,8 @@ public class Loots {
         lootTables.dropWhenSilkTouch(block);
     }
 
+    public static void createLeavesDrops(RegistrateBlockLootTables lootTables, Block block, Block sapling, float... chances) {
+        lootTables.add(block, lootTables.createLeavesDrops(block, sapling, chances));
+    }
+
 }
