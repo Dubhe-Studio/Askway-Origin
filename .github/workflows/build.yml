@@ -4,6 +4,7 @@ on:
     paths:
       - 'src/**'
       - '.github/workflows/**'
+      - 'build.gradle'
     branches-ignore:
       - 'releases/**'
 
