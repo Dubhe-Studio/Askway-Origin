@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "askway_origin:peach_log"
+    }
+  ],
+  "result": {
+    "item": "askway_origin:peach_wood"
+  }
+}

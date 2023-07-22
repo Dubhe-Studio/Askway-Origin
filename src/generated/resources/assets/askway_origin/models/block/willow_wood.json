@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "askway_origin:block/willow_wood",
-    "side": "askway_origin:block/willow_wood"
+    "end": "askway_origin:block/willow_log",
+    "side": "askway_origin:block/willow_log"
   }
 }

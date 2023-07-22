@@ -9,4 +9,7 @@ public class AskwayModConfiguredFeature {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILLOW = ResourceKey.create(
             Registries.CONFIGURED_FEATURE, AskwayOrigin.of("willow"));
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEACH = ResourceKey.create(
+            Registries.CONFIGURED_FEATURE, AskwayOrigin.of("peach"));
+
 }
