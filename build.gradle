@@ -34,7 +34,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'askway_origin'
 
             mods {
-                askwayorigin {
+                askway_origin {
                     source sourceSets.main
                 }
             }
@@ -48,7 +48,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'askway_origin'
 
             mods {
-                askwayorigin {
+                askway_origin {
                     source sourceSets.main
                 }
             }
@@ -61,7 +61,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'askway_origin'
 
             mods {
-                askwayorigin {
+                askway_origin {
                     source sourceSets.main
                 }
             }
@@ -72,10 +72,10 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'askwayorigin', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'askway_origin', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                askwayorigin {
+                askway_origin {
                     source sourceSets.main
                 }
             }
@@ -109,7 +109,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "askwayorigin",
+                "Specification-Title"     : "askway_origin",
                 "Specification-Vendor"    : "DubheStudio",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
