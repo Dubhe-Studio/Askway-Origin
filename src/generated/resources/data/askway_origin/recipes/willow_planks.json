@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "askway_origin:willow_log"
+      "tag": "askway_origin:willow_logs"
     }
   ],
   "result": {

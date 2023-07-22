@@ -28,12 +28,26 @@ public class AskwayModBlocks {
 
 
     public static final RegistryEntry<RotatedPillarBlock> WILLOW_LOG = REGISTRATE.block("willow_log", RotatedPillarBlock::new)
-            .tag(BlockTags.LOGS)
+            .tag(AskwayModTags.Blocks.WILLOW_LOGS)
             .initialProperties(() -> Blocks.OAK_LOG)
             .blockstate((ctx, provider) -> provider.logBlock(ctx.get()))
             .loot(Loots::dropSelf)
             .item()
-            .tag(ItemTags.LOGS)
+            .tag(AskwayModTags.Items.WILLOW_LOGS)
+            .build()
+            .register();
+
+    public static final RegistryEntry<RotatedPillarBlock> WILLOW_WOOD = REGISTRATE.block("willow_wood", RotatedPillarBlock::new)
+            .tag(AskwayModTags.Blocks.WILLOW_LOGS)
+            .initialProperties(() -> Blocks.OAK_WOOD)
+            .blockstate((ctx, provider) -> provider.axisBlock(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName()),
+                    provider.modLoc("block/" + ctx.getName())
+            ))
+            .loot(Loots::dropSelf)
+            .item()
+            .tag(AskwayModTags.Items.WILLOW_LOGS)
             .build()
             .register();
 
@@ -43,8 +57,8 @@ public class AskwayModBlocks {
             .blockstate((ctx, provider) -> provider.simpleBlock(ctx.get()))
             .loot(Loots::dropSelf)
             .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 4)
-                    .requires(Ingredient.of(WILLOW_LOG.get()))
-                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(WILLOW_LOG.get()))
+                    .requires(Ingredient.of(AskwayModTags.Items.WILLOW_LOGS))
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(AskwayModTags.Items.WILLOW_LOGS))
                     .save(provider))
             .item()
             .tag(ItemTags.PLANKS)
@@ -76,6 +90,8 @@ public class AskwayModBlocks {
             .tag(ItemTags.LEAVES)
             .build()
             .register();
+
+
 
     public static void register() {
     }
