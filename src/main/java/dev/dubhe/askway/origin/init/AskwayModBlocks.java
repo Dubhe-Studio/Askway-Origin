@@ -2,6 +2,7 @@ package dev.dubhe.askway.origin.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.dubhe.askway.origin.init.blocks.WillowTreeGrower;
 import dev.dubhe.askway.origin.utils.Loots;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.grower.OakTreeGrower;
 
 import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 
@@ -52,7 +52,7 @@ public class AskwayModBlocks {
             .register();
 
     public static final RegistryEntry<SaplingBlock> WILLOW_SAPLING = REGISTRATE
-            .block("willow_sapling", p -> new SaplingBlock(new OakTreeGrower(), p))
+            .block("willow_sapling", p -> new SaplingBlock(new WillowTreeGrower(), p))
             .tag(BlockTags.SAPLINGS)
             .initialProperties(() -> Blocks.OAK_SAPLING)
             .blockstate((ctx, provider) -> {
