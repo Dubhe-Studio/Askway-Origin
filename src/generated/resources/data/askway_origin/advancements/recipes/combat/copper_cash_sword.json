@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "askway_origin:copper_cash_sword"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "hasitem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "askway_origin:copper_cash"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "hasitem",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "askway_origin:copper_cash_sword"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.dubhe.askway.origin.items.MagicTestItem;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
@@ -49,6 +50,22 @@ public class AskwayModItems {
                     .define('A', AskwayModBlocks.LIGHTNING_PEACH_PLANKS.get())
                     .define('B', Items.STICK)
                     .unlockedBy("hasitem", RegistrateRecipeProvider.has(AskwayModBlocks.LIGHTNING_PEACH_PLANKS.get()))
+                    .save(provider))
+            .register();
+
+    public static final RegistryEntry<Item> COPPER_CASH = REGISTRATE.item("copper_cash", Item::new)
+            .register();
+
+    public static final RegistryEntry<SwordItem> COPPER_CASH_SWORD = REGISTRATE
+            .item("copper_cash_sword", p -> new SwordItem(Tiers.IRON, 3, -2.4F, p))
+            .properties(p -> p.stacksTo(1).durability(156).defaultDurability(156))
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
+                    .pattern("A")
+                    .pattern("A")
+                    .pattern("B")
+                    .define('A', COPPER_CASH.get())
+                    .define('B', Items.STICK)
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(COPPER_CASH.get()))
                     .save(provider))
             .register();
 
