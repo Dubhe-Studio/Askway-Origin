@@ -84,6 +84,7 @@ public class AskwayModBlocks {
             })
             .item()
             .model((ctx, provider) -> provider.generated(ctx, provider.modLoc("block/" + ctx.getName())))
+            .tag(ItemTags.SAPLINGS)
             .build()
             .register();
     public static final RegistryEntry<LeavesBlock> WILLOW_LEAVES = REGISTRATE.block("willow_leaves", LeavesBlock::new)
@@ -155,6 +156,7 @@ public class AskwayModBlocks {
             })
             .item()
             .model((ctx, provider) -> provider.generated(ctx, provider.modLoc("block/" + ctx.getName())))
+            .tag(ItemTags.SAPLINGS)
             .build()
             .register();
 
