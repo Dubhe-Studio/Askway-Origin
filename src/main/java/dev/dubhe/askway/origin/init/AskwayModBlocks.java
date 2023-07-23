@@ -6,6 +6,7 @@ import dev.dubhe.askway.origin.init.blocks.PeachTreeGrower;
 import dev.dubhe.askway.origin.init.blocks.WillowTreeGrower;
 import dev.dubhe.askway.origin.utils.Loots;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -47,8 +48,10 @@ public class AskwayModBlocks {
                     provider.modLoc("block/" + ctx.getName().replace("_wood", "_log"))
             ))
             .loot(Loots::dropSelf)
-            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 1)
-                    .requires(Ingredient.of(WILLOW_LOG.get()))
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 3)
+                    .pattern("XX")
+                    .pattern("XX")
+                    .define('X', WILLOW_LOG.get())
                     .unlockedBy("hasitem", RegistrateRecipeProvider.has(WILLOW_LOG.get()))
                     .save(provider))
             .item()
@@ -116,8 +119,10 @@ public class AskwayModBlocks {
                     provider.modLoc("block/" + ctx.getName().replace("_wood", "_log"))
             ))
             .loot(Loots::dropSelf)
-            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 1)
-                    .requires(Ingredient.of(PEACH_LOG.get()))
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 3)
+                    .pattern("XX")
+                    .pattern("XX")
+                    .define('X', PEACH_LOG.get())
                     .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_LOG.get()))
                     .save(provider))
             .item()
@@ -186,8 +191,10 @@ public class AskwayModBlocks {
                     provider.modLoc("block/" + ctx.getName().replace("_wood", "_log"))
             ))
             .loot(Loots::dropSelf)
-            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 1)
-                    .requires(Ingredient.of(LIGHTNING_PEACH_LOG.get()))
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 3)
+                    .pattern("XX")
+                    .pattern("XX")
+                    .define('X', LIGHTNING_PEACH_LOG.get())
                     .unlockedBy("hasitem", RegistrateRecipeProvider.has(LIGHTNING_PEACH_LOG.get()))
                     .save(provider))
             .item()
