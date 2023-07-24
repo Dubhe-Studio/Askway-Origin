@@ -1,6 +1,8 @@
 {
   "values": [
+    "askway_origin:stripped_peach_log",
     "askway_origin:peach_log",
+    "askway_origin:stripped_peach_wood",
     "askway_origin:peach_wood"
   ]
 }

@@ -9,6 +9,10 @@ public class Loots {
         lootTables.dropSelf(block);
     }
 
+    public static void dropDoorSelf(RegistrateBlockLootTables lootTables, Block block) {
+        lootTables.add(block, lootTables.createDoorTable(block));
+    }
+
     public static void dropOther(RegistrateBlockLootTables lootTables, Block block, Item item) {
         lootTables.dropOther(block, item);
     }

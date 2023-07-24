@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "askway_origin:willow_planks"
+    }
+  },
+  "pattern": [
+    "AA"
+  ],
+  "result": {
+    "item": "askway_origin:willow_pressure_plate"
+  },
+  "show_notification": true
+}

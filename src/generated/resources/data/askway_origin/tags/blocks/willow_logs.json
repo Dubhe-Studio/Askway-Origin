@@ -1,6 +1,8 @@
 {
   "values": [
+    "askway_origin:stripped_willow_log",
     "askway_origin:willow_log",
+    "askway_origin:stripped_willow_wood",
     "askway_origin:willow_wood"
   ]
 }

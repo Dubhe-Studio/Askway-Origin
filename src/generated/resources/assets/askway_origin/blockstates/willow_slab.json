@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "askway_origin:block/willow_slab"
+    },
+    "type=double": {
+      "model": "askway_origin:block/willow_planks"
+    },
+    "type=top": {
+      "model": "askway_origin:block/willow_slab_top"
+    }
+  }
+}

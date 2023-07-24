@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "askway_origin:stripped_peach_wood"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "askway_origin:blocks/stripped_peach_wood"
+}
