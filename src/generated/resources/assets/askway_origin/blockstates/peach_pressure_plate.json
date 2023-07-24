@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "askway_origin:block/peach_pressure_plate"
+    },
+    "powered=true": {
+      "model": "askway_origin:block/peach_pressure_plate_down"
+    }
+  }
+}

@@ -405,6 +405,187 @@ public class AskwayModBlocks {
             .build()
             .register();
 
+    public static final RegistryEntry<StairBlock> PEACH_STAIRS = REGISTRATE
+            .block("peach_stairs", p -> new StairBlock(() -> PEACH_PLANKS.get().defaultBlockState(), p))
+            .tag(BlockTags.WOODEN_STAIRS)
+            .initialProperties(() -> Blocks.OAK_STAIRS)
+            .blockstate((ctx, provider) -> provider.stairsBlock(ctx.get(), provider.modLoc("block/" + ctx.getName().replace("_stairs", "_planks"))))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 4)
+                    .pattern("A  ")
+                    .pattern("AA ")
+                    .pattern("AAA")
+                    .define('A', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_STAIRS)
+            .build()
+            .register();
+
+    public static final RegistryEntry<SlabBlock> PEACH_SLAB = REGISTRATE
+            .block("peach_slab", SlabBlock::new)
+            .tag(BlockTags.WOODEN_SLABS)
+            .initialProperties(() -> Blocks.OAK_SLAB)
+            .blockstate((ctx, provider) -> provider.slabBlock(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName().replace("_slab", "_planks")),
+                    provider.modLoc("block/" + ctx.getName().replace("_slab", "_planks"))
+            ))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get(), 6)
+                    .pattern("AAA")
+                    .define('A', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_SLABS)
+            .build()
+            .register();
+
+    public static final RegistryEntry<FenceBlock> PEACH_FENCE = REGISTRATE
+            .block("peach_fence", FenceBlock::new)
+            .tag(BlockTags.WOODEN_FENCES)
+            .initialProperties(() -> Blocks.OAK_FENCE)
+            .blockstate((ctx, provider) -> {
+                provider.fenceBlock(
+                        ctx.get(),
+                        provider.modLoc("block/" + ctx.getName().replace("_fence", "_planks"))
+                );
+                provider.models().fenceInventory(
+                        ctx.getName(),
+                        provider.modLoc("block/" + ctx.getName().replace("_fence", "_planks"))
+                );
+            })
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ctx.get())
+                    .pattern("ABA")
+                    .pattern("ABA")
+                    .define('A', Items.STICK)
+                    .define('B', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_FENCES)
+            .build()
+            .register();
+
+    public static final RegistryEntry<FenceGateBlock> PEACH_FENCE_GATE = REGISTRATE
+            .block("peach_fance_gate", p -> new FenceGateBlock(p, AskwayModWoodTypes.PEACH))
+            .tag(BlockTags.FENCE_GATES)
+            .initialProperties(() -> Blocks.OAK_FENCE_GATE)
+            .blockstate((ctx, provider) -> provider.fenceGateBlock(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName().replace("_fance_gate", "_planks"))
+            ))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ctx.get())
+                    .pattern("ABA")
+                    .pattern("ABA")
+                    .define('A', Items.STICK)
+                    .define('B', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.FENCE_GATES)
+            .build()
+            .register();
+
+    public static final RegistryEntry<DoorBlock> PEACH_DOOR = REGISTRATE
+            .block("peach_door", p -> new DoorBlock(p, AskwayModBlockSetTypes.PEACH))
+            .tag(BlockTags.WOODEN_DOORS)
+            .initialProperties(() -> Blocks.OAK_DOOR)
+            .blockstate((ctx, provider) -> provider.doorBlockWithRenderType(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName() + "_bottom"),
+                    provider.modLoc("block/" + ctx.getName() + "_top"),
+                    "cutout"
+            ))
+            .loot(Loots::dropDoorSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ctx.get())
+                    .pattern("AA")
+                    .pattern("AA")
+                    .pattern("AA")
+                    .define('A', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_DOORS)
+            .model((ctx, provider) -> provider.generated(ctx))
+            .build()
+            .register();
+
+    public static final RegistryEntry<TrapDoorBlock> PEACH_TRAPDOOR = REGISTRATE
+            .block("peach_trapdoor", p -> new TrapDoorBlock(p, AskwayModBlockSetTypes.PEACH))
+            .tag(BlockTags.WOODEN_TRAPDOORS)
+            .initialProperties(() -> Blocks.OAK_TRAPDOOR)
+            .blockstate((ctx, provider) -> provider.trapdoorBlockWithRenderType(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName()),
+                    true,
+                    "cutout"
+            ))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ctx.get(), 2)
+                    .pattern("AAA")
+                    .pattern("AAA")
+                    .define('A', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_TRAPDOORS)
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("block/" + ctx.getName() + "_bottom")))
+            .build()
+            .register();
+
+    public static final RegistryEntry<PressurePlateBlock> PEACH_PRESSURE_PLATE = REGISTRATE
+            .block("peach_pressure_plate", p -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p, AskwayModBlockSetTypes.PEACH))
+            .tag(BlockTags.WOODEN_PRESSURE_PLATES)
+            .initialProperties(() -> Blocks.OAK_PRESSURE_PLATE)
+            .blockstate((ctx, provider) -> provider.pressurePlateBlock(
+                    ctx.get(),
+                    provider.modLoc("block/" + ctx.getName().replace("_pressure_plate", "_planks"))
+            ))
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ctx.get())
+                    .pattern("AA")
+                    .define('A', PEACH_PLANKS.get())
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_PRESSURE_PLATES)
+            .build()
+            .register();
+
+    public static final RegistryEntry<ButtonBlock> PEACH_BUTTON = REGISTRATE
+            .block("peach_button", p -> new ButtonBlock(p, AskwayModBlockSetTypes.PEACH, 20, true))
+            .tag(BlockTags.WOODEN_BUTTONS)
+            .initialProperties(() -> Blocks.OAK_BUTTON)
+            .blockstate((ctx, provider) -> {
+                provider.buttonBlock(
+                        ctx.get(),
+                        provider.modLoc("block/" + ctx.getName().replace("_button", "_planks"))
+                );
+                provider.models().singleTexture(
+                        ctx.getName() + "_inventory",
+                        provider.mcLoc("block/button_inventory"),
+                        provider.modLoc("block/" + ctx.getName().replace("_button", "_planks"))
+                );
+            })
+            .loot(Loots::dropSelf)
+            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, ctx.get())
+                    .requires(Ingredient.of(PEACH_PLANKS.get()))
+                    .unlockedBy("hasitem", RegistrateRecipeProvider.has(PEACH_PLANKS.get()))
+                    .save(provider))
+            .item()
+            .tag(ItemTags.WOODEN_BUTTONS)
+            .model((ctx, provider) -> provider.withExistingParent(
+                    ctx.getName(),
+                    provider.modLoc("block/" + ctx.getName() + "_inventory")
+            ))
+            .build()
+            .register();
+
     public static final RegistryEntry<SaplingBlock> PEACH_SAPLING = REGISTRATE
             .block("peach_sapling", p -> new SaplingBlock(new PeachTreeGrower(), p))
             .tag(BlockTags.SAPLINGS)
