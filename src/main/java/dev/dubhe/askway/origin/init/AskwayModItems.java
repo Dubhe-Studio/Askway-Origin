@@ -2,6 +2,7 @@ package dev.dubhe.askway.origin.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.dubhe.askway.origin.init.items.ScraperItem;
 import dev.dubhe.askway.origin.items.MagicTestItem;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 
+@SuppressWarnings("unused")
 public class AskwayModItems {
 
 
@@ -67,6 +69,31 @@ public class AskwayModItems {
                     .define('B', Items.STICK)
                     .unlockedBy("hasitem", RegistrateRecipeProvider.has(COPPER_CASH.get()))
                     .save(provider))
+            .register();
+
+    public static final RegistryEntry<Item> BARK = REGISTRATE
+            .item("bark", Item::new)
+            .register();
+
+    public static final RegistryEntry<Item> LANA = REGISTRATE
+            .item("lana", Item::new)
+            .register();
+
+    public static final RegistryEntry<Item> TALISMAN_PAPER = REGISTRATE
+            .item("talisman_paper", Item::new)
+            .register();
+
+    public static final RegistryEntry<Item> TALISMAN_INK = REGISTRATE
+            .item("talisman_ink", Item::new)
+            .register();
+
+    public static final RegistryEntry<Item> TALISMAN_BRUSH = REGISTRATE
+            .item("talisman_brush", Item::new)
+            .register();
+
+    public static final RegistryEntry<ScraperItem> SCRAPER = REGISTRATE
+            .item("scraper", ScraperItem::new)
+            .properties(p -> p.stacksTo(1).durability(64).defaultDurability(64))
             .register();
 
 

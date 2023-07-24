@@ -32,10 +32,16 @@
   "block.askway_origin.willow_stairs": "Willow Stairs",
   "block.askway_origin.willow_trapdoor": "Willow Trapdoor",
   "block.askway_origin.willow_wood": "Willow Wood",
+  "item.askway_origin.bark": "Bark",
   "item.askway_origin.copper_cash": "Copper Cash",
   "item.askway_origin.copper_cash_sword": "Copper Cash Sword",
+  "item.askway_origin.lana": "Lana",
   "item.askway_origin.lightning_peach_wooden_sword": "Lightning Peach Wooden Sword",
   "item.askway_origin.magic_test": "Magic Test",
   "item.askway_origin.peach_wooden_sword": "Peach Wooden Sword",
+  "item.askway_origin.scraper": "Scraper",
+  "item.askway_origin.talisman_brush": "Talisman Brush",
+  "item.askway_origin.talisman_ink": "Talisman Ink",
+  "item.askway_origin.talisman_paper": "Talisman Paper",
   "tab.askway_origin.origin": "Askway Origin"
 }
