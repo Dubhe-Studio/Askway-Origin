@@ -3,9 +3,11 @@ package dev.dubhe.askway.origin.magical.effects;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
+import dev.dubhe.askway.origin.utils.CustomRegistry;
 
 public interface IEffect { // 法术效果
-    IEffect BREAK = new BreakEffect();
+    CustomRegistry<IEffect> EFFECT_CUSTOM_REGISTRY = new CustomRegistry<>();
+    IEffect BREAK = EFFECT_CUSTOM_REGISTRY.register("break", new BreakEffect());
 
     /**
      * 展现法术效果

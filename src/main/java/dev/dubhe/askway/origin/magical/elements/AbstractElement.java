@@ -1,11 +1,14 @@
 package dev.dubhe.askway.origin.magical.elements;
 
 import dev.dubhe.askway.origin.utils.Color;
-import org.joml.Vector3f;
+import dev.dubhe.askway.origin.utils.CustomRegistry;
 
+@SuppressWarnings("unused")
 public abstract class AbstractElement { // 元素
-    public static final AbstractElement FIRE = new AbstractElement(Color.FIRE_RED, true, false, true) {
-    };
+
+    public static final CustomRegistry<AbstractElement> ELEMENT_CUSTOM_REGISTRY = new CustomRegistry<>();
+    public static final AbstractElement FIRE = ELEMENT_CUSTOM_REGISTRY.register("fire", new AbstractElement(Color.FIRE_RED, true, false, true) {
+    });
 
     private final boolean[] code;
     private final Color color;
