@@ -1,24 +1,27 @@
 package dev.dubhe.askway.origin.entities;
 
 import dev.dubhe.askway.origin.init.AskwayModEntities;
+import dev.dubhe.askway.origin.init.AskwayModItems;
 import dev.dubhe.askway.origin.magical.MagicGroup;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.casters.LivingEntityCaster;
-import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.BlockTarget;
 import dev.dubhe.askway.origin.magical.targets.EntityTarget;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,10 +30,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MagicEntity extends Projectile {
-    public boolean gravity = false;
-    public MagicGroup[] magicGroup = {};
+public class MagicEntity extends Projectile implements ItemSupplier {
+    private boolean gravity = false;
+    private MagicGroup[] magicGroup = {};
+    private ItemStack item = ItemStack.EMPTY;
 
     public MagicEntity(EntityType<? extends Projectile> type, Level level) {
         super(type, level);
@@ -54,6 +60,10 @@ public class MagicEntity extends Projectile {
 
     public static MagicEntity create(Level level, Vec3 pos, Entity owner, boolean gravity, MagicGroup... magicGroup) {
         return new MagicEntity(level, pos, owner, gravity, magicGroup);
+    }
+
+    public void setItem(ItemStack item) {
+        this.item = item;
     }
 
     @Override
@@ -205,11 +215,23 @@ public class MagicEntity extends Projectile {
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         if (pCompound.contains("gravity")) this.gravity = pCompound.getBoolean("gravity");
-        if (pCompound.contains("magic")) this.magicGroup[0].fromNbtTag(pCompound.getCompound("magic"));
+        if (pCompound.contains("magic")) {
+            List<MagicGroup> magics = new ArrayList<>();
+            for (Tag magic : pCompound.getList("magic", Tag.TAG_COMPOUND)) {
+                if (magic instanceof CompoundTag tag)
+                    magics.add(MagicGroup.fromNbtTag(tag));
+            }
+            this.magicGroup = magics.toArray(MagicGroup[]::new);
+        }
     }
 
     @Nullable
     protected EntityHitResult findHitEntity(Vec3 pStartVec, Vec3 pEndVec) {
         return ProjectileUtil.getEntityHitResult(this.level(), this, pStartVec, pEndVec, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0D), this::canHitEntity);
+    }
+
+    @Override
+    public @NotNull ItemStack getItem() {
+        return item == ItemStack.EMPTY ? new ItemStack(AskwayModItems.TALISMAN.get()) : item;
     }
 }

@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
 import dev.dubhe.askway.origin.init.AskwayModBlocks;
 import dev.dubhe.askway.origin.init.AskwayModCreativeModeTabs;
+import dev.dubhe.askway.origin.init.AskwayModEntities;
 import dev.dubhe.askway.origin.init.AskwayModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,6 +27,7 @@ public class AskwayOrigin {
 
         AskwayModBlocks.register();
         AskwayModItems.register();
+        AskwayModEntities.register();
 
     }
 

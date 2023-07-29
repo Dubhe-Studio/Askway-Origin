@@ -33,8 +33,8 @@ import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 public class AskwayModBlocks {
 
     static {
-        if (AskwayModCreativeModeTabs.ORIGIN.getKey() != null) {
-            REGISTRATE.defaultCreativeTab(AskwayModCreativeModeTabs.ORIGIN.getKey());
+        if (AskwayModCreativeModeTabs.ORIGIN_BLOCKS.getKey() != null) {
+            REGISTRATE.defaultCreativeTab(AskwayModCreativeModeTabs.ORIGIN_BLOCKS.getKey());
         }
     }
 

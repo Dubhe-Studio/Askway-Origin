@@ -2,13 +2,14 @@ package dev.dubhe.askway.origin.utils;
 
 import dev.dubhe.askway.origin.exception.CustomRegistryEntryExistsException;
 import dev.dubhe.askway.origin.exception.CustomRegistryEntryRepeatException;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-public class CustomRegistry<T> {
+public class CustomRegistry<T> implements Iterable<Map.Entry<String, T>> {
     private final Map<String, T> KV_MAP = new HashMap<>();
     private final Map<T, String> VK_MAP = new HashMap<>();
 
@@ -39,5 +40,11 @@ public class CustomRegistry<T> {
 
     public boolean contain(T t) {
         return VK_MAP.containsKey(t);
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Map.Entry<String, T>> iterator() {
+        return null;
     }
 }
