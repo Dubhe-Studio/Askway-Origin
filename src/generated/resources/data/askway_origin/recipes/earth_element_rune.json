@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "askway_origin:empty_rune"
+    },
+    "B": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "result": {
+    "item": "askway_origin:earth_element_rune"
+  },
+  "show_notification": true
+}

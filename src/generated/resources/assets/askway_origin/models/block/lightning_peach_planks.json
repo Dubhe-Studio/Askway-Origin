@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "askway_origin:block/lightning_peach_planks"
+  }
+}

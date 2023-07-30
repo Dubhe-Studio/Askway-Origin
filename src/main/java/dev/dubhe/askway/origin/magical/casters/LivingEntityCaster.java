@@ -1,7 +1,11 @@
 package dev.dubhe.askway.origin.magical.casters;
 
+import dev.dubhe.askway.origin.magical.targets.EntityTarget;
+import dev.dubhe.askway.origin.magical.targets.ITarget;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class LivingEntityCaster implements ICaster {
@@ -17,7 +21,26 @@ public class LivingEntityCaster implements ICaster {
     }
 
     @Override
+    public Vec3 getViewVector() {
+        return this.entity.getViewVector(1.0F);
+    }
+
+    @Override
+    public Vec3 getUpVector() {
+        return this.entity.getUpVector(1.0F);
+    }
+
+    @Override
     public DamageSource getDamageSource() {
         return this.entity.damageSources().mobAttack(this.entity);
+    }
+
+    @Override
+    public ITarget getTarget() {
+        return new EntityTarget(entity);
+    }
+
+    public Entity getOwner() {
+        return this.entity;
     }
 }

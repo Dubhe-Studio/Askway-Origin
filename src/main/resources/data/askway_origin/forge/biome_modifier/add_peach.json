@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_forest",
+  "features": "askway_origin:peach_tree",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "askway_origin:willow_planks"
+    }
+  ],
+  "result": {
+    "item": "askway_origin:willow_button"
+  }
+}

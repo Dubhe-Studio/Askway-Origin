@@ -14,8 +14,6 @@ public class StraightLineVisual implements IVisual {
         Vec3 step = pos2.subtract(pos).multiply(1.0 / energy, 1.0 / energy, 1.0 / energy);
         for (int i = 0; i < energy; i++) {
             pos = pos.add(step);
-            System.out.println(pos);
-            System.out.println(pos2);
             target.getLevel().addParticle(new DustParticleOptions(element.getColor().getVec3f(), element.getColor().getAlphaF()),pos.x, pos.y, pos.z,0,0,0);
         }
     }

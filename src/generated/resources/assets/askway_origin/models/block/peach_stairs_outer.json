@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "askway_origin:block/peach_planks",
+    "side": "askway_origin:block/peach_planks",
+    "top": "askway_origin:block/peach_planks"
+  }
+}

@@ -4,6 +4,7 @@
 *.iml
 *.ipr
 *.iws
+*.psd
 
 # IntelliJ
 out/
@@ -117,3 +118,4 @@ run/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+/src/generated/resources/.cache/

@@ -1,10 +1,15 @@
 package dev.dubhe.askway.origin.magical;
 
+import com.mojang.datafixers.types.templates.CompoundList;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.Arrays;
@@ -12,8 +17,8 @@ import java.util.List;
 import java.util.Vector;
 
 public class MagicGroup {
-    private final AbstractElement element; // 元素
-    private final int energy; // 总能量
+    private AbstractElement element; // 元素
+    private int energy; // 总能量
     private final List<IEffect> effects; // 法术效果列表
     private final List<IVisual> visuals; // 法术视效列表
 
@@ -108,5 +113,44 @@ public class MagicGroup {
         if (target.getLevel() instanceof ServerLevel)
             for (IEffect effect : this.effects) effect.execute(caster, element, energy * effect.getWeights(), target);
         else for (IVisual visual : this.visuals) visual.display(caster, element, energy * visual.getWeights(), target);
+    }
+
+    public CompoundTag toNbtTag() {
+        CompoundTag tag = new CompoundTag();
+        tag.putString("element", AbstractElement.ELEMENT_CUSTOM_REGISTRY.getId(this.element));
+        tag.putInt("energy", this.energy);
+        ListTag effectsList = new ListTag();
+        for (IEffect effect : effects) {
+            effectsList.add(StringTag.valueOf(IEffect.EFFECT_CUSTOM_REGISTRY.getId(effect)));
+        }
+        tag.put("effects", effectsList);
+        ListTag visualsList = new ListTag();
+        for (IVisual visual : visuals) {
+            visualsList.add(StringTag.valueOf(IVisual.VISUAL_CUSTOM_REGISTRY.getId(visual)));
+        }
+        tag.put("visuals", visualsList);
+        return tag;
+    }
+
+    public static MagicGroup fromNbtTag(CompoundTag tag) {
+        MagicGroup group = new MagicGroup(AbstractElement.FIRE, 0);
+        if (tag.contains("element"))
+            group.element = AbstractElement.ELEMENT_CUSTOM_REGISTRY.get(tag.getString("element"));
+        if (tag.contains("energy")) group.energy = tag.getInt("energy");
+        if (tag.contains("effects")) {
+            group.effects.clear();
+            ListTag list = tag.getList("effects", Tag.TAG_STRING);
+            for (Tag tag1 : list) {
+                group.effects.add(IEffect.EFFECT_CUSTOM_REGISTRY.get(tag1.getAsString()));
+            }
+        }
+        if (tag.contains("visuals")) {
+            group.visuals.clear();
+            ListTag list = tag.getList("visuals", Tag.TAG_STRING);
+            for (Tag tag1 : list) {
+                group.visuals.add(IVisual.VISUAL_CUSTOM_REGISTRY.get(tag1.getAsString()));
+            }
+        }
+        return group;
     }
 }
