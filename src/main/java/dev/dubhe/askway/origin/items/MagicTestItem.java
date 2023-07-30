@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Objects;
 
 public class MagicTestItem extends Item {
     public MagicTestItem(Properties properties) {
@@ -40,7 +41,7 @@ public class MagicTestItem extends Item {
         int energy = MagicTestItem.getEnergy(context.getItemInHand());
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
-        ICaster caster = new LivingEntityCaster(context.getPlayer());
+        ICaster caster = new LivingEntityCaster(Objects.requireNonNull(context.getPlayer()));
         ITarget target = new BlockTarget(level, pos);
         MagicGroup fire = new MagicGroup(AbstractElement.FIRE, energy).addEffects(IEffect.BREAK);
         caster.execute(IMode.TOUCH, IGoal.EXACT, target, fire);
@@ -65,7 +66,7 @@ public class MagicTestItem extends Item {
 
     public static int getEnergy(@NotNull ItemStack stack) {
         CompoundTag tag = stack.getTag();
-        if (null != tag && tag.contains("energy")) return stack.getTag().getInt("energy");
+        if (null != tag) return tag.getInt("energy");
         return 0;
     }
 }
