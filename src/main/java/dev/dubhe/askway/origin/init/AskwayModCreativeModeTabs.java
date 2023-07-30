@@ -29,7 +29,7 @@ public class AskwayModCreativeModeTabs {
             () -> CreativeModeTab.builder()
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .title(Component.translatable("tab.askway_origin.origin"))
-                    .icon(() -> AskwayModItems.MAGIC_TEST.get().getDefaultInstance())
+                    .icon(() -> AskwayModItems.COPPER_COIN_SWORD.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         output.accept(TalismanItem.create(
                                 new MagicGroup(AbstractElement.FIRE, 20), IMode.SHOOT, IGoal.RANGE
@@ -45,7 +45,7 @@ public class AskwayModCreativeModeTabs {
             () -> CreativeModeTab.builder()
                     .withTabsBefore(ORIGIN.getKey())
                     .title(Component.translatable("tab.askway_origin.origin_blocks"))
-                    .icon(() -> AskwayModItems.MAGIC_TEST.get().getDefaultInstance())
+                    .icon(() -> AskwayModBlocks.LIGHTNING_PEACH_WOOD.get().asItem().getDefaultInstance())
                     .build()
     );
 }

@@ -59,6 +59,18 @@ public class TalismanTableMenu extends AbstractContainerMenu {
         }
     }
 
+    public boolean hasNotBrush() {
+        return this.craftSlots.getItem(0).isEmpty();
+    }
+
+    public boolean hasNotInk() {
+        return this.craftSlots.getItem(1).isEmpty();
+    }
+
+    public boolean hasNotPaper() {
+        return this.craftSlots.getItem(2).isEmpty();
+    }
+
     protected static void slotChangedCraftingGrid(AbstractContainerMenu pMenu, Level pLevel, Player pPlayer, TalismanTableContainer pContainer, ResultContainer pResult) {
         if (pLevel.isClientSide) return;
         ServerPlayer serverplayer = (ServerPlayer) pPlayer;

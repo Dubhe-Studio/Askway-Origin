@@ -24,6 +24,9 @@ public class TalismanTableScreen extends AbstractContainerScreen<TalismanTableMe
     @Override
     public void render(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+        if (this.menu.hasNotBrush()) this.renderBrush(pGuiGraphics);
+        if (this.menu.hasNotInk()) this.renderInk(pGuiGraphics);
+        if (this.menu.hasNotPaper()) this.renderPaper(pGuiGraphics);
         this.renderTooltip(pGuiGraphics, pMouseX, pMouseY);
     }
 
@@ -31,5 +34,23 @@ public class TalismanTableScreen extends AbstractContainerScreen<TalismanTableMe
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
         pGuiGraphics.blit(TALISMAN_TABLE_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
+    }
+
+    protected void renderBrush(GuiGraphics pGuiGraphics) {
+        int i = this.leftPos;
+        int j = (this.height - this.imageHeight) / 2;
+        pGuiGraphics.blit(TALISMAN_TABLE_LOCATION, i + 8, j + 17, 0, this.imageHeight, 16, 16);
+    }
+
+    protected void renderInk(GuiGraphics pGuiGraphics) {
+        int i = this.leftPos;
+        int j = (this.height - this.imageHeight) / 2;
+        pGuiGraphics.blit(TALISMAN_TABLE_LOCATION, i + 8, j + 44, 16, this.imageHeight, 16, 16);
+    }
+
+    protected void renderPaper(GuiGraphics pGuiGraphics) {
+        int i = this.leftPos;
+        int j = (this.height - this.imageHeight) / 2;
+        pGuiGraphics.blit(TALISMAN_TABLE_LOCATION, i + 8, j + 71, 32, this.imageHeight, 16, 16);
     }
 }
