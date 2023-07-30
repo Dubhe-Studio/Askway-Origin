@@ -7,7 +7,7 @@ import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.utils.CustomRegistry;
 
 public interface IEffect { // 法术效果
-    CustomRegistry<IEffect> EFFECT_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("effect"));
+    CustomRegistry<IEffect> EFFECT_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("magical_effect"));
     IEffect BREAK = EFFECT_CUSTOM_REGISTRY.register("break", new BreakEffect());
 
     /**

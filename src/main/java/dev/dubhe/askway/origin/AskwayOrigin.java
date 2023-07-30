@@ -2,8 +2,10 @@ package dev.dubhe.askway.origin;
 
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
+import dev.dubhe.askway.origin.events.handler.AskwayModEventHandler;
 import dev.dubhe.askway.origin.init.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -22,11 +24,14 @@ public class AskwayOrigin {
 
         AskwayModCreativeModeTabs.TAB_REGISTER.register(modEventBus);
 
+        MinecraftForge.EVENT_BUS.register(new AskwayModEventHandler());
+
         AskwayModBlocks.register();
         AskwayModItems.register();
         AskwayModEntities.register();
         AskwayModBlockEntities.register();
         AskwayModMenus.register();
+        AskwayModMobEffects.register();
     }
 
     public static @NotNull ResourceLocation of(String str) {
