@@ -3,7 +3,14 @@ package dev.dubhe.askway.origin.utils;
 import org.joml.Vector3f;
 
 public class Color {
+    public static final Color METAL_WHITE = new Color((short) 255, (short) 255, (short) 255, (short) 255);
+    public static final Color BOTANY_GREEN = new Color((short) 0, (short) 255, (short) 0, (short) 255);
+    public static final Color WATER_BLUE = new Color((short) 0, (short) 136, (short) 255, (short) 255);
     public static final Color FIRE_RED = new Color((short) 194, (short) 31, (short) 48, (short) 255);
+    public static final Color EARTH_BROWN = new Color((short) 183, (short) 123, (short) 0, (short) 255);
+    public static final Color THUNDER_PURPLE = new Color((short) 136, (short) 0, (short) 238, (short) 255);
+    public static final Color FREEZE_BLUE = new Color((short) 170, (short) 255, (short) 255, (short) 255);
+    public static final Color WIND_BLUE = new Color((short) 0, (short) 255, (short) 187, (short) 255);
     public final short red;
     public final short green;
     public final short blue;

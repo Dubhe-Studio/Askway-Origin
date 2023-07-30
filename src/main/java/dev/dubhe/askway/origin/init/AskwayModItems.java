@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import dev.dubhe.askway.origin.items.ScraperItem;
 import dev.dubhe.askway.origin.items.*;
 import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
@@ -14,7 +13,12 @@ import dev.dubhe.askway.origin.magical.visuals.IVisual;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
@@ -134,9 +138,44 @@ public class AskwayModItems {
                     .save(provider))
             .register();
 
+    public static final RegistryEntry<ElementRuneItem> METAL_ELEMENT_RUNE = REGISTRATE
+            .item("metal_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.METAL))
+            .recipe(new RuneRecipe<>(Items.IRON_INGOT))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> BOTANY_ELEMENT_RUNE = REGISTRATE
+            .item("botany_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.BOTANY))
+            .recipe(new RuneRecipe<>(Items.STICK))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> WATER_ELEMENT_RUNE = REGISTRATE
+            .item("water_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WATER))
+            .recipe(new RuneRecipe<>(Items.WATER_BUCKET))
+            .register();
+
     public static final RegistryEntry<ElementRuneItem> FIRE_ELEMENT_RUNE = REGISTRATE
             .item("fire_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FIRE))
             .recipe(new RuneRecipe<>(Items.BLAZE_POWDER))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> EARTH_ELEMENT_RUNE = REGISTRATE
+            .item("earth_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.EARTH))
+            .recipe(new RuneRecipe<>(Items.DIRT))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> THUNDER_ELEMENT_RUNE = REGISTRATE
+            .item("thunder_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.THUNDER))
+            .recipe(new RuneRecipe<>(Blocks.LIGHTNING_ROD))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> FREEZE_ELEMENT_RUNE = REGISTRATE
+            .item("freeze_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FREEZE))
+            .recipe(new RuneRecipe<>(Items.ICE))
+            .register();
+
+    public static final RegistryEntry<ElementRuneItem> WIND_ELEMENT_RUNE = REGISTRATE
+            .item("wind_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WIND))
+            .recipe(new RuneRecipe<>(Items.PHANTOM_MEMBRANE))
             .register();
 
     public static final RegistryEntry<GoalRuneItem> EXACT_GOAL_RUNE = REGISTRATE
@@ -187,9 +226,9 @@ public class AskwayModItems {
     }
 
     public static class RuneRecipe<T extends Item> implements NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> {
-        private final Item item;
+        private final ItemLike item;
 
-        public RuneRecipe(Item item) {
+        public RuneRecipe(ItemLike item) {
             this.item = item;
         }
 
