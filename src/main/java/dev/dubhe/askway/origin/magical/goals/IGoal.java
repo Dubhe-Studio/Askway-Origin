@@ -1,5 +1,6 @@
 package dev.dubhe.askway.origin.magical.goals;
 
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public interface IGoal { // 目标类型
 
-    CustomRegistry<IGoal> GOAL_CUSTOM_REGISTRY = new CustomRegistry<>();
+    CustomRegistry<IGoal> GOAL_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("goal"));
     IGoal EXACT = GOAL_CUSTOM_REGISTRY.register("exact", new ExactGoal());
     IGoal RANGE = GOAL_CUSTOM_REGISTRY.register("range", new RangeGoal());
 

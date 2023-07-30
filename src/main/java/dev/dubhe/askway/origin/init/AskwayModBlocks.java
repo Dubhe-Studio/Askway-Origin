@@ -668,14 +668,13 @@ public class AskwayModBlocks {
 
     public static final BlockEntry<TalismanTableBlock> TALISMAN_TABLE = REGISTRATE
             .block("talisman_table", (properties -> new TalismanTableBlock(properties.noOcclusion())))
-            .blockstate((ctx, provider) -> {
-                provider.modLoc(ctx.getName());
-                provider.models().cubeAll(ctx.getName(), provider.modLoc("block/" + ctx.getName())).renderType("cutout");
-            })
+            .blockstate((ctx, provider) -> provider.modLoc(ctx.getName()))
             .item(TalismanTableItem::new)
             .model((ctx, provider) -> provider.modLoc("item/" + ctx.getName()))
             .build()
             .register();
+
+
 
     public static void register() {
     }

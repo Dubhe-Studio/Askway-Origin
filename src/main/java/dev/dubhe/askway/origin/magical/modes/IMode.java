@@ -1,5 +1,6 @@
 package dev.dubhe.askway.origin.magical.modes;
 
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.magical.MagicGroup;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.goals.IGoal;
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public interface IMode { // 施放方式
-    CustomRegistry<IMode> MODE_CUSTOM_REGISTRY = new CustomRegistry<>();
+    CustomRegistry<IMode> MODE_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("mode"));
     IMode TOUCH = MODE_CUSTOM_REGISTRY.register("touch", new TouchMode());
     IMode SELF = MODE_CUSTOM_REGISTRY.register("self", new SelfMode());
     IMode THROW = MODE_CUSTOM_REGISTRY.register("throw", new ThrowMode());

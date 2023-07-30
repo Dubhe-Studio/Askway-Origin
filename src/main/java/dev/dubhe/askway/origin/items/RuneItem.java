@@ -13,7 +13,7 @@ public abstract class RuneItem<T> extends Item {
     }
 
     @NotNull
-    public T getData(@NotNull ItemStack stack) {
+    public T getData() {
         return this.t;
     }
 }

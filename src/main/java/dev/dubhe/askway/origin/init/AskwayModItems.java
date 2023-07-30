@@ -84,7 +84,7 @@ public class AskwayModItems {
 
     public static final RegistryEntry<Item> TALISMAN_PAPER = REGISTRATE
             .item("talisman_paper", Item::new)
-            .properties(p -> p.stacksTo(1).durability(64).defaultDurability(64))
+            .properties(p -> p.stacksTo(16))
             .register();
 
     public static final RegistryEntry<Item> TALISMAN_INK = REGISTRATE

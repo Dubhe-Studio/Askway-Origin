@@ -1,12 +1,13 @@
 package dev.dubhe.askway.origin.magical.effects;
 
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.utils.CustomRegistry;
 
 public interface IEffect { // 法术效果
-    CustomRegistry<IEffect> EFFECT_CUSTOM_REGISTRY = new CustomRegistry<>();
+    CustomRegistry<IEffect> EFFECT_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("effect"));
     IEffect BREAK = EFFECT_CUSTOM_REGISTRY.register("break", new BreakEffect());
 
     /**

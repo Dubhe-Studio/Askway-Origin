@@ -11,6 +11,7 @@ import java.util.List;
 public class TouchMode implements IMode {
     @Override
     public void execute(@NotNull ICaster caster, @NotNull IGoal goal, ITarget direct, MagicGroup @NotNull ... magics) {
+        if (direct == null) return;
         List<ITarget> targetList = goal.getTargets(caster, direct);
         for (MagicGroup magic : magics) {
             magic = magic.addVisuals(goal.getDefaultVisual()).split(targetList.size());

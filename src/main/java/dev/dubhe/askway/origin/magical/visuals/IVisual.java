@@ -1,5 +1,6 @@
 package dev.dubhe.askway.origin.magical.visuals;
 
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface IVisual { // 法术视效
-    CustomRegistry<IVisual> VISUAL_CUSTOM_REGISTRY = new CustomRegistry<>();
+    CustomRegistry<IVisual> VISUAL_CUSTOM_REGISTRY = new CustomRegistry<>(AskwayOrigin.of("visual"));
     IVisual STRAIGHT_LINE = VISUAL_CUSTOM_REGISTRY.register("straight_line", new StraightLineVisual());
 
     /**

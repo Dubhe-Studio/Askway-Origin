@@ -1,4 +1,4 @@
-package dev.dubhe.askway.origin.inventory;
+package dev.dubhe.askway.origin.menu.inventory;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.Slot;

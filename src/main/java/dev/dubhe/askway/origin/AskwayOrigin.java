@@ -26,7 +26,7 @@ public class AskwayOrigin {
         AskwayModItems.register();
         AskwayModEntities.register();
         AskwayModBlockEntities.register();
-
+        AskwayModMenus.register();
     }
 
     public static @NotNull ResourceLocation of(String str) {

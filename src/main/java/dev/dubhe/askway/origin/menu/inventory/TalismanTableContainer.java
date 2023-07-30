@@ -1,4 +1,4 @@
-package dev.dubhe.askway.origin.inventory;
+package dev.dubhe.askway.origin.menu.inventory;
 
 import dev.dubhe.askway.origin.items.*;
 import dev.dubhe.askway.origin.magical.MagicGroup;
@@ -93,7 +93,7 @@ public class TalismanTableContainer implements Container, StackedContentsCompati
     }
 
     public boolean canCraft() {
-        return !this.items.get(9).isEmpty() && !this.items.get(10).isEmpty() && !this.items.get(11).isEmpty();
+        return !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(9).isEmpty() && !this.items.get(10).isEmpty() && !this.items.get(11).isEmpty();
     }
 
     /**
@@ -120,23 +120,23 @@ public class TalismanTableContainer implements Container, StackedContentsCompati
         IGoal goal = null;
         IMode mode = null;
         if (elementStack.getItem() instanceof ElementRuneItem item) {
-            element = item.getData(elementStack);
+            element = item.getData();
         }
         if (goalStack.getItem() instanceof GoalRuneItem item) {
-            goal = item.getData(goalStack);
+            goal = item.getData();
         }
         if (modeStack.getItem() instanceof ModeRuneItem item) {
-            mode = item.getData(modeStack);
+            mode = item.getData();
         }
         if (element == null || goal == null || mode == null) return ItemStack.EMPTY;
         MagicGroup magic = new MagicGroup(element, 15);
         for (ItemStack stack : effectStacks) {
             if (!(stack.getItem() instanceof EffectRuneItem item)) continue;
-            magic.addEffects(item.getData(stack));
+            magic.addEffects(item.getData());
         }
         for (ItemStack stack : visualStacks) {
             if (!(stack.getItem() instanceof VisualRuneItem item)) continue;
-            magic.addVisuals(item.getData(stack));
+            magic.addVisuals(item.getData());
 
         }
         return TalismanItem.create(magic, mode, goal);
