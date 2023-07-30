@@ -2,10 +2,7 @@ package dev.dubhe.askway.origin;
 
 import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
-import dev.dubhe.askway.origin.init.AskwayModBlocks;
-import dev.dubhe.askway.origin.init.AskwayModCreativeModeTabs;
-import dev.dubhe.askway.origin.init.AskwayModEntities;
-import dev.dubhe.askway.origin.init.AskwayModItems;
+import dev.dubhe.askway.origin.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +25,7 @@ public class AskwayOrigin {
         AskwayModBlocks.register();
         AskwayModItems.register();
         AskwayModEntities.register();
+        AskwayModBlockEntities.register();
 
     }
 

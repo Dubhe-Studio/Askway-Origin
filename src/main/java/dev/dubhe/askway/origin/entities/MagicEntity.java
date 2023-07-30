@@ -1,6 +1,5 @@
 package dev.dubhe.askway.origin.entities;
 
-import dev.dubhe.askway.origin.init.AskwayModEntities;
 import dev.dubhe.askway.origin.init.AskwayModItems;
 import dev.dubhe.askway.origin.magical.MagicGroup;
 import dev.dubhe.askway.origin.magical.casters.ICaster;
@@ -16,7 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -42,28 +40,19 @@ public class MagicEntity extends Projectile implements ItemSupplier {
         super(type, level);
     }
 
-    private MagicEntity(Level level, Vec3 pos, Entity owner, MagicGroup... magicGroup) {
-        super(AskwayModEntities.MAGIC.get(), level);
-        this.move(MoverType.SELF, pos);
-        this.setOwner(owner);
-        this.magicGroup = magicGroup;
-    }
-
-    private MagicEntity(Level level, Vec3 pos, Entity owner, boolean gravity, MagicGroup... magicGroup) {
-        this(level, pos, owner, magicGroup);
+    public MagicEntity setGravity(boolean gravity) {
         this.gravity = gravity;
+        return this;
     }
 
-    public static MagicEntity create(Level level, Vec3 pos, Entity owner, MagicGroup... magicGroup) {
-        return new MagicEntity(level, pos, owner, magicGroup);
+    public MagicEntity setMagicGroup(MagicGroup[] magicGroup) {
+        this.magicGroup = magicGroup;
+        return this;
     }
 
-    public static MagicEntity create(Level level, Vec3 pos, Entity owner, boolean gravity, MagicGroup... magicGroup) {
-        return new MagicEntity(level, pos, owner, gravity, magicGroup);
-    }
-
-    public void setItem(ItemStack item) {
+    public MagicEntity setItem(ItemStack item) {
         this.item = item;
+        return this;
     }
 
     @Override

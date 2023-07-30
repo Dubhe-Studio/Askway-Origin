@@ -1,10 +1,13 @@
 package dev.dubhe.askway.origin.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import dev.dubhe.askway.origin.init.blocks.PeachTreeGrower;
-import dev.dubhe.askway.origin.init.blocks.StrippableRotatedPillarBlock;
-import dev.dubhe.askway.origin.init.blocks.WillowTreeGrower;
+import dev.dubhe.askway.origin.blocks.TalismanTableBlock;
+import dev.dubhe.askway.origin.blocks.grower.PeachTreeGrower;
+import dev.dubhe.askway.origin.blocks.StrippableRotatedPillarBlock;
+import dev.dubhe.askway.origin.blocks.grower.WillowTreeGrower;
+import dev.dubhe.askway.origin.items.TalismanTableItem;
 import dev.dubhe.askway.origin.utils.Loots;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -663,8 +666,17 @@ public class AskwayModBlocks {
             .build()
             .register();
 
+    public static final BlockEntry<TalismanTableBlock> TALISMAN_TABLE = REGISTRATE
+            .block("talisman_table", (properties -> new TalismanTableBlock(properties.noOcclusion())))
+            .blockstate((ctx, provider) -> {
+                provider.modLoc(ctx.getName());
+                provider.models().cubeAll(ctx.getName(), provider.modLoc("block/" + ctx.getName())).renderType("cutout");
+            })
+            .item(TalismanTableItem::new)
+            .model((ctx, provider) -> provider.modLoc("item/" + ctx.getName()))
+            .build()
+            .register();
 
     public static void register() {
     }
-
 }

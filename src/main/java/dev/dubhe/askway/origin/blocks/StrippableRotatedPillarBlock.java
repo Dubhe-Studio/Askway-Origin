@@ -1,4 +1,4 @@
-package dev.dubhe.askway.origin.init.blocks;
+package dev.dubhe.askway.origin.blocks;
 
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;

@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import dev.dubhe.askway.origin.init.items.ScraperItem;
+import dev.dubhe.askway.origin.items.ScraperItem;
 import dev.dubhe.askway.origin.items.*;
 import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
@@ -58,19 +58,19 @@ public class AskwayModItems {
                     .save(provider))
             .register();
 
-    public static final RegistryEntry<Item> COPPER_CASH = REGISTRATE.item("copper_cash", Item::new)
+    public static final RegistryEntry<Item> COPPER_COIN = REGISTRATE.item("copper_coin", Item::new)
             .register();
 
-    public static final RegistryEntry<SwordItem> COPPER_CASH_SWORD = REGISTRATE
-            .item("copper_cash_sword", p -> new SwordItem(Tiers.IRON, 3, -2.4F, p))
+    public static final RegistryEntry<SwordItem> COPPER_COIN_SWORD = REGISTRATE
+            .item("copper_coin_sword", p -> new SwordItem(Tiers.IRON, 3, -2.4F, p))
             .properties(p -> p.stacksTo(1).durability(156).defaultDurability(156))
             .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get())
                     .pattern("A")
                     .pattern("A")
                     .pattern("B")
-                    .define('A', COPPER_CASH.get())
+                    .define('A', COPPER_COIN.get())
                     .define('B', Items.STICK)
-                    .unlockedBy("has_item", RegistrateRecipeProvider.has(COPPER_CASH.get()))
+                    .unlockedBy("has_item", RegistrateRecipeProvider.has(COPPER_COIN.get()))
                     .save(provider))
             .register();
 
@@ -94,7 +94,6 @@ public class AskwayModItems {
                     .requires(Items.GLOWSTONE_DUST)
                     .requires(Items.INK_SAC)
                     .unlockedBy("has_item", RegistrateRecipeProvider.has(Items.GLOWSTONE_DUST))
-                    .unlockedBy("has_item", RegistrateRecipeProvider.has(Items.INK_SAC))
                     .save(provider))
             .register();
 

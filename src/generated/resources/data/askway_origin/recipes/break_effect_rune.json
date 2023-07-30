@@ -1,21 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
   "key": {
     "A": {
-      "item": "askway_origin:copper_cash"
+      "item": "askway_origin:empty_rune"
     },
     "B": {
-      "item": "minecraft:stick"
+      "item": "minecraft:wooden_pickaxe"
     }
   },
   "pattern": [
     "A",
-    "A",
     "B"
   ],
   "result": {
-    "item": "askway_origin:copper_cash_sword"
+    "item": "askway_origin:break_effect_rune"
   },
   "show_notification": true
 }

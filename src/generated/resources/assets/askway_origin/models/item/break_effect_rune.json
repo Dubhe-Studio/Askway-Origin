@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "askway_origin:item/break_effect_rune"
+  }
+}

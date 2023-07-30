@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -32,6 +33,14 @@ public class TalismanItem extends Item {
 
     public TalismanItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
+        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+        ICaster caster = new LivingEntityCaster(pPlayer);
+        TalismanItem.executeMagic(caster, null, stack);
+        return InteractionResultHolder.consume(stack);
     }
 
     @Override

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "askway_origin:item/copper_cash"
+    "layer0": "askway_origin:item/talisman"
   }
 }

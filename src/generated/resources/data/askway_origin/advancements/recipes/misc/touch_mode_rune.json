@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "askway_origin:lightning_peach_planks"
+              "askway_origin:empty_rune"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "askway_origin:lightning_peach_wooden_sword"
+        "recipe": "askway_origin:touch_mode_rune"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "askway_origin:lightning_peach_wooden_sword"
+      "askway_origin:touch_mode_rune"
     ]
   },
   "sends_telemetry_event": false

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "askway_origin:item/copper_cash_sword"
+    "layer0": "askway_origin:item/self_mode_rune"
   }
 }

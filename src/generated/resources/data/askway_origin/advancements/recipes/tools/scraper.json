@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "askway_origin:lightning_peach_planks"
+              "minecraft:iron_ingot"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "askway_origin:lightning_peach_wooden_sword"
+        "recipe": "askway_origin:scraper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "askway_origin:lightning_peach_wooden_sword"
+      "askway_origin:scraper"
     ]
   },
   "sends_telemetry_event": false

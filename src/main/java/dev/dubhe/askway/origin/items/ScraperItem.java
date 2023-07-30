@@ -1,4 +1,4 @@
-package dev.dubhe.askway.origin.init.items;
+package dev.dubhe.askway.origin.items;
 
 import dev.dubhe.askway.origin.init.AskwayModItems;
 import net.minecraft.advancements.CriteriaTriggers;
