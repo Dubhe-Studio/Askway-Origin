@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MagicEntity extends Projectile implements ItemSupplier {
-    private boolean gravity = false;
     private MagicGroup[] magicGroup = {};
     private ItemStack item = ItemStack.EMPTY;
 
@@ -40,10 +39,6 @@ public class MagicEntity extends Projectile implements ItemSupplier {
         super(type, level);
     }
 
-    public MagicEntity setGravity(boolean gravity) {
-        this.gravity = gravity;
-        return this;
-    }
 
     public MagicEntity setMagicGroup(MagicGroup[] magicGroup) {
         this.magicGroup = magicGroup;
@@ -105,8 +100,8 @@ public class MagicEntity extends Projectile implements ItemSupplier {
                 hitresult = entityhitresult;
             }
 
-            if (hitresult != null && hitresult.getType() == HitResult.Type.ENTITY) {
-                Entity entity = ((EntityHitResult) hitresult).getEntity();
+            if (hitresult != null && hitresult.getType() != HitResult.Type.MISS && hitresult instanceof EntityHitResult entityHitResult) {
+                Entity entity = entityHitResult.getEntity();
                 Entity entity1 = this.getOwner();
                 if (entity instanceof Player && entity1 instanceof Player && !((Player) entity1).canHarmPlayer((Player) entity)) {
                     hitresult = null;
@@ -136,7 +131,7 @@ public class MagicEntity extends Projectile implements ItemSupplier {
         double d2 = this.getY() + d6;
         double d3 = this.getZ() + d1;
         double d4 = vec3.horizontalDistance();
-        if (this.gravity) {
+        if (!isNoGravity()) {
             this.setYRot((float) (Mth.atan2(-d5, -d1) * (double) (180F / (float) Math.PI)));
         } else {
             this.setYRot((float) (Mth.atan2(d5, d1) * (double) (180F / (float) Math.PI)));
@@ -148,7 +143,7 @@ public class MagicEntity extends Projectile implements ItemSupplier {
         float f = 0.99F;
         this.setDeltaMovement(vec3.scale(f));
 
-        if (!this.isNoGravity() || this.gravity) {
+        if (!this.isNoGravity() ) {
             Vec3 vec34 = this.getDeltaMovement();
             this.setDeltaMovement(vec34.x, vec34.y - (double) 0.05F, vec34.z);
         }
@@ -192,7 +187,6 @@ public class MagicEntity extends Projectile implements ItemSupplier {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        pCompound.putBoolean("gravity", this.gravity);
         ListTag list = new ListTag();
         for (MagicGroup group : this.magicGroup) {
             list.add(group.toNbtTag());
@@ -203,7 +197,6 @@ public class MagicEntity extends Projectile implements ItemSupplier {
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("gravity")) this.gravity = pCompound.getBoolean("gravity");
         if (pCompound.contains("magic")) {
             List<MagicGroup> magics = new ArrayList<>();
             for (Tag magic : pCompound.getList("magic", Tag.TAG_COMPOUND)) {

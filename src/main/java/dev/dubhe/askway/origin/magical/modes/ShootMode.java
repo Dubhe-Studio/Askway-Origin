@@ -12,15 +12,19 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class ShootMode implements IMode {
+
     @Override
     public void execute(@NotNull ICaster caster, IGoal goal, ITarget direct, MagicGroup @NotNull ... magics) {
         MagicEntity magic = AskwayModEntities.MAGIC.get().create(caster.getLevel());
         if (magic != null) {
-            magic.setGravity(false).setMagicGroup(magics).setOwner(caster.getOwner());
+            caster.getLevel().addFreshEntity(magic);
+            magic.setNoGravity(true);
+            magic.setMagicGroup(magics).setOwner(caster.getOwner());
             Vec3 vec3 = caster.getUpVector();
-            magic.moveTo(vec3);
+            magic.moveTo(caster.getPos());
             Vector3f vector3f = caster.getViewVector().toVector3f().rotate(new Quaternionf().setAngleAxis(0.0D, vec3.x, vec3.y, vec3.z));
             magic.shoot(vector3f.x(), vector3f.y(), vector3f.z(), 1.6F, 1.0F);
         }
     }
+
 }

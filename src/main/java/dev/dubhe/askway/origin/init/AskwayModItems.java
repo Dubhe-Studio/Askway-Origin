@@ -10,6 +10,7 @@ import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.goals.IGoal;
 import dev.dubhe.askway.origin.magical.modes.IMode;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;

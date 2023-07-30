@@ -46,6 +46,7 @@ public class TalismanTableBlock extends HorizontalDirectionalBlock implements En
         this.registerDefaultState(this.stateDefinition.any().setValue(PART, TalismanTablePart.MIDDLE));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         if (pLevel.isClientSide) {
@@ -57,6 +58,7 @@ public class TalismanTableBlock extends HorizontalDirectionalBlock implements En
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Nullable
     @Override
     public MenuProvider getMenuProvider(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos) {
