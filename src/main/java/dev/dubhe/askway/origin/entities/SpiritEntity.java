@@ -6,7 +6,9 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -41,6 +43,11 @@ public class SpiritEntity extends Monster {
         return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
+    @Override
+    public @NotNull MobType getMobType() {
+        return MobType.UNDEAD;
+    }
+
     public SpiritEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.playerInfo = null;
@@ -70,9 +77,11 @@ public class SpiritEntity extends Monster {
             else if (mainHand.is(AskwayModItems.PEACH_WOODEN_SWORD.get()))
                 super.hurt(pSource, pAmount);
             else if (mainHand.is(AskwayModItems.LIGHTNING_PEACH_WOODEN_SWORD.get()))
-                super.hurt(pSource, pAmount*1.5f);
+                super.hurt(pSource, pAmount * 1.5f);
             else if (mainHand.is(AskwayModItems.COPPER_COIN_SWORD.get()))
-                super.hurt(pSource, pAmount*2.0f);
+                super.hurt(pSource, pAmount * 2.0f);
+            else if (pSource.is(DamageTypes.MAGIC))
+                super.hurt(pSource, pAmount * 2.0f);
             else return false;
         }
         return super.hurt(pSource, pAmount);

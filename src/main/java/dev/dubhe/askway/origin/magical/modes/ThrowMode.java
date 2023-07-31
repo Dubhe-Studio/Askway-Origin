@@ -17,12 +17,11 @@ public class ThrowMode implements IMode {
         MagicEntity magic = AskwayModEntities.MAGIC.get().create(caster.getLevel());
         if (magic != null) {
             caster.getLevel().addFreshEntity(magic);
-            magic.setNoGravity(false);
             magic.setMagicGroup(magics).setOwner(caster.getOwner());
             magic.moveTo(caster.getPos());
             Vec3 vec3 = caster.getUpVector();
             Vector3f vector3f = caster.getViewVector().toVector3f().rotate(new Quaternionf().setAngleAxis(0.0D, vec3.x, vec3.y, vec3.z));
-            magic.shoot(vector3f.x(), vector3f.y(), vector3f.z(), 1.6F, 1.0F);
+            magic.shoot(vector3f.x(), vector3f.y(), vector3f.z(), 1.2F, 1.0F);
         }
     }
 }

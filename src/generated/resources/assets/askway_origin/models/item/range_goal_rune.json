@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "askway_origin:item/range_goal_rune"
-  }
+  "parent": "askway_origin:item/goal_rune"
 }

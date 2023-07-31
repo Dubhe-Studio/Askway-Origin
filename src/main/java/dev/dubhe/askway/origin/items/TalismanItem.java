@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+@SuppressWarnings("resource")
 public class TalismanItem extends Item {
     public static final String TAG_MAGIC_GROUP = "magic";
     public static final String TAG_MODE = "mode";
@@ -38,6 +39,8 @@ public class TalismanItem extends Item {
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand pUsedHand) {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+        if (pPlayer.level().isClientSide)
+            return InteractionResultHolder.sidedSuccess(stack, pPlayer.level().isClientSide);
         ICaster caster = new LivingEntityCaster(pPlayer);
         TalismanItem.executeMagic(caster, null, stack);
         return InteractionResultHolder.consume(stack);
@@ -45,6 +48,9 @@ public class TalismanItem extends Item {
 
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
+        if (context.getPlayer() == null) return InteractionResult.PASS;
+        if (context.getPlayer().level().isClientSide)
+            return InteractionResult.sidedSuccess(context.getPlayer().level().isClientSide);
         ICaster caster = new LivingEntityCaster(context.getPlayer());
         ITarget target = new BlockTarget(context.getLevel(), context.getClickedPos());
         TalismanItem.executeMagic(caster, target, context.getItemInHand());
@@ -53,6 +59,7 @@ public class TalismanItem extends Item {
 
     @Override
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, @NotNull Player player, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
+        if (player.level().isClientSide) return InteractionResult.sidedSuccess(player.level().isClientSide);
         ICaster caster = new LivingEntityCaster(player);
         ITarget target = new EntityTarget(entity);
         TalismanItem.executeMagic(caster, target, stack);
@@ -63,6 +70,7 @@ public class TalismanItem extends Item {
         MagicGroup magic = TalismanItem.getMagicGroup(stack);
         IMode mode = TalismanItem.getMode(stack);
         IGoal goal = TalismanItem.getGoal(stack);
+        stack.shrink(1);
         if (mode != null && goal != null) caster.execute(mode, goal, target, magic);
     }
 

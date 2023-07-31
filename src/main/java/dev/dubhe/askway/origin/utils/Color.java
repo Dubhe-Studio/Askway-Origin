@@ -33,4 +33,8 @@ public class Color {
     public float getAlphaF() {
         return (float) 1.0 / 255 * this.alpha;
     }
+
+    public int getInt() {
+        return red << 24 | green << 16 | blue << 8 | alpha;
+    }
 }

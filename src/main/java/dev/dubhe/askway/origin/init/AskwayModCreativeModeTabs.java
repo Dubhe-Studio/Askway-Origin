@@ -3,9 +3,11 @@ package dev.dubhe.askway.origin.init;
 import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.items.TalismanItem;
 import dev.dubhe.askway.origin.magical.MagicGroup;
+import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.goals.IGoal;
 import dev.dubhe.askway.origin.magical.modes.IMode;
+import dev.dubhe.askway.origin.magical.visuals.IVisual;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,10 +34,10 @@ public class AskwayModCreativeModeTabs {
                     .icon(() -> AskwayModItems.COPPER_COIN_SWORD.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         output.accept(TalismanItem.create(
-                                new MagicGroup(AbstractElement.FIRE, 20), IMode.SHOOT, IGoal.RANGE
+                                new MagicGroup(AbstractElement.FIRE, 20).addEffects(IEffect.BREAK).addVisuals(IVisual.STRAIGHT_LINE), IMode.SHOOT, IGoal.RANGE
                         ));
                         output.accept(TalismanItem.create(
-                                new MagicGroup(AbstractElement.FIRE, 20), IMode.THROW, IGoal.RANGE
+                                new MagicGroup(AbstractElement.FIRE, 20).addEffects(IEffect.BREAK).addVisuals(IVisual.STRAIGHT_LINE), IMode.THROW, IGoal.RANGE
                         ));
                     })
                     .build()

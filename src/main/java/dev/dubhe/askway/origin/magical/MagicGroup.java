@@ -5,16 +5,19 @@ import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
+import dev.dubhe.askway.origin.network.MagicalVisualNetworkImpl;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class MagicGroup {
 
     private AbstractElement element; // 元素
@@ -34,8 +37,9 @@ public class MagicGroup {
     }
 
     /**
-     添加法术效果
-     @param effects 法术效果
+     * 添加法术效果
+     *
+     * @param effects 法术效果
      */
     public MagicGroup addEffects(IEffect... effects) {
         this.effects.addAll(Arrays.asList(effects));
@@ -43,8 +47,9 @@ public class MagicGroup {
     }
 
     /**
-     添加法术视效
-     @param visuals 法术视效
+     * 添加法术视效
+     *
+     * @param visuals 法术视效
      */
     public MagicGroup addVisuals(IVisual... visuals) {
         this.visuals.addAll(Arrays.asList(visuals));
@@ -52,59 +57,67 @@ public class MagicGroup {
     }
 
     /**
-     获取法术组元素
-     @return 元素
+     * 获取法术组元素
+     *
+     * @return 元素
      */
     public AbstractElement getElement() {
         return this.element;
     }
 
     /**
-     获取法术组充能
-     @return 充能
+     * 获取法术组充能
+     *
+     * @return 充能
      */
     public int getEnergy() {
         return this.energy;
     }
 
     /**
-     获取法术组效果
-     @return 效果
+     * 获取法术组效果
+     *
+     * @return 效果
      */
     public List<IEffect> getEffects() {
         return this.effects;
     }
 
     /**
-     获取法术组视效
-     @return 视效
+     * 获取法术组视效
+     *
+     * @return 视效
      */
     public List<IVisual> getVisuals() {
         return this.visuals;
     }
 
     /**
-     分割法术组
-     @param count 数量
-     @return 新法术组
+     * 分割法术组
+     *
+     * @param count 数量
+     * @return 新法术组
      */
     public MagicGroup split(int count) {
         return new MagicGroup(element, energy / count, effects, visuals);
     }
 
     /**
-     执行法术
-     @param caster 执行者
-     @param target 目标
+     * 执行法术
+     *
+     * @param caster 执行者
+     * @param target 目标
      */
     public void execute(ICaster caster, ITarget target) {
         int weights = 0;
         for (IEffect effect : this.effects) weights += effect.getWeights();
         for (IVisual visual : this.visuals) weights += visual.getWeights();
         int energy = weights == 0 ? 0 : this.energy / weights;
-        if (target.getLevel() instanceof ServerLevel)
+        if (!target.getLevel().isClientSide && target.getLevel() instanceof ServerLevel level) {
             for (IEffect effect : this.effects) effect.execute(caster, element, energy * effect.getWeights(), target);
-        else for (IVisual visual : this.visuals) visual.display(caster, element, energy * visual.getWeights(), target);
+            for (IVisual visual : this.visuals)
+                MagicalVisualNetworkImpl.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(target::getChunk), visual.display(caster, element, energy * visual.getWeights(), target));
+        }
     }
 
     public CompoundTag toNbtTag() {

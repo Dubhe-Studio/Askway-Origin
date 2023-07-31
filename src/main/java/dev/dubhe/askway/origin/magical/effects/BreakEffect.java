@@ -14,7 +14,7 @@ public class BreakEffect implements IEffect {
         } else if (target instanceof BlockTarget block) {
             float destroySpeed = block.getState().getDestroySpeed(block.getLevel(), block.getBlockPos());
             if (destroySpeed > 0 && destroySpeed <= energy) {
-                block.getLevel().destroyBlock(block.getBlockPos(), true);
+                block.getLevel().destroyBlock(block.getBlockPos(), true, caster.getOwner());
             }
         }
     }

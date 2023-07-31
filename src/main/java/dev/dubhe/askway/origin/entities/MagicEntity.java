@@ -51,13 +51,18 @@ public class MagicEntity extends Projectile implements ItemSupplier {
     }
 
     @Override
+    @SuppressWarnings("resource")
     public void tick() {
         super.tick();
         boolean inGround = false;
         Vec3 vec3 = this.getDeltaMovement();
+        if (vec3.lengthSqr() < 0.01 && !level().isClientSide) {
+            this.remove(RemovalReason.DISCARDED);
+            return;
+        }
         if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
             double d0 = vec3.horizontalDistance();
-            this.setYRot((float) (Mth.atan2(vec3.x, vec3.z) * (double) (180F / (float) Math.PI)));
+            this.setYRot((float) (Mth.atan2(vec3.x(), vec3.z) * (double) (180F / (float) Math.PI)));
             this.setXRot((float) (Mth.atan2(vec3.y, d0) * (double) (180F / (float) Math.PI)));
             this.yRotO = this.getYRot();
             this.xRotO = this.getXRot();
@@ -143,7 +148,7 @@ public class MagicEntity extends Projectile implements ItemSupplier {
         float f = 0.99F;
         this.setDeltaMovement(vec3.scale(f));
 
-        if (!this.isNoGravity() ) {
+        if (!this.isNoGravity()) {
             Vec3 vec34 = this.getDeltaMovement();
             this.setDeltaMovement(vec34.x, vec34.y - (double) 0.05F, vec34.z);
         }
@@ -157,7 +162,9 @@ public class MagicEntity extends Projectile implements ItemSupplier {
     }
 
     @Override
+    @SuppressWarnings("resource")
     protected void onHit(@NotNull HitResult pResult) {
+        if (this.level().isClientSide) return;
         super.onHit(pResult);
         this.remove(RemovalReason.DISCARDED);
     }

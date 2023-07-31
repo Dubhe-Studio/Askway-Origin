@@ -4,13 +4,13 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.items.*;
 import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
 import dev.dubhe.askway.origin.magical.goals.IGoal;
 import dev.dubhe.askway.origin.magical.modes.IMode;
 import dev.dubhe.askway.origin.magical.visuals.IVisual;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -20,7 +20,11 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 
@@ -32,10 +36,6 @@ public class AskwayModItems {
             REGISTRATE.defaultCreativeTab(AskwayModCreativeModeTabs.ORIGIN.getKey());
         }
     }
-
-    public static final RegistryEntry<MagicTestItem> MAGIC_TEST = REGISTRATE
-            .item("magic_test", MagicTestItem::new)
-            .register();
 
     public static final RegistryEntry<SwordItem> PEACH_WOODEN_SWORD = REGISTRATE
             .item("peach_wooden_sword", p -> new SwordItem(Tiers.WOOD, 3, -2.4F, p))
@@ -141,81 +141,97 @@ public class AskwayModItems {
 
     public static final RegistryEntry<ElementRuneItem> METAL_ELEMENT_RUNE = REGISTRATE
             .item("metal_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.METAL))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.IRON_INGOT))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> BOTANY_ELEMENT_RUNE = REGISTRATE
             .item("botany_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.BOTANY))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.STICK))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> WATER_ELEMENT_RUNE = REGISTRATE
             .item("water_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WATER))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.WATER_BUCKET))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> FIRE_ELEMENT_RUNE = REGISTRATE
             .item("fire_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FIRE))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.BLAZE_POWDER))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> EARTH_ELEMENT_RUNE = REGISTRATE
             .item("earth_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.EARTH))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.DIRT))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> THUNDER_ELEMENT_RUNE = REGISTRATE
             .item("thunder_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.THUNDER))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Blocks.LIGHTNING_ROD))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> FREEZE_ELEMENT_RUNE = REGISTRATE
             .item("freeze_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FREEZE))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.ICE))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> WIND_ELEMENT_RUNE = REGISTRATE
             .item("wind_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WIND))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.PHANTOM_MEMBRANE))
             .register();
 
     public static final RegistryEntry<GoalRuneItem> EXACT_GOAL_RUNE = REGISTRATE
             .item("exact_goal_rune", properties -> new GoalRuneItem(properties, IGoal.EXACT))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "goal_rune")))
             .recipe(new RuneRecipe<>(Items.ENDER_PEARL))
             .register();
 
     public static final RegistryEntry<GoalRuneItem> RANGE_GOAL_RUNE = REGISTRATE
             .item("range_goal_rune", properties -> new GoalRuneItem(properties, IGoal.RANGE))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "goal_rune")))
             .recipe(new RuneRecipe<>(Items.ARROW))
             .register();
 
     public static final RegistryEntry<ModeRuneItem> TOUCH_MODE_RUNE = REGISTRATE
             .item("touch_mode_rune", properties -> new ModeRuneItem(properties, IMode.TOUCH))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "mode_rune")))
             .recipe(new RuneRecipe<>(Items.SLIME_BALL))
             .register();
 
     public static final RegistryEntry<ModeRuneItem> SELF_MODE_RUNE = REGISTRATE
             .item("self_mode_rune", properties -> new ModeRuneItem(properties, IMode.SELF))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "mode_rune")))
             .recipe(new RuneRecipe<>(Items.GLASS_BOTTLE))
             .register();
 
     public static final RegistryEntry<ModeRuneItem> THROW_MODE_RUNE = REGISTRATE
             .item("throw_mode_rune", properties -> new ModeRuneItem(properties, IMode.THROW))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "mode_rune")))
             .recipe(new RuneRecipe<>(Items.SUGAR))
             .register();
 
     public static final RegistryEntry<ModeRuneItem> SHOOT_MODE_RUNE = REGISTRATE
             .item("shoot_mode_rune", properties -> new ModeRuneItem(properties, IMode.SHOOT))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "mode_rune")))
             .recipe(new RuneRecipe<>(Items.GUNPOWDER))
             .register();
 
     public static final RegistryEntry<EffectRuneItem> BREAK_EFFECT_RUNE = REGISTRATE
             .item("break_effect_rune", properties -> new EffectRuneItem(properties, IEffect.BREAK))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
             .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
             .register();
 
     public static final RegistryEntry<VisualRuneItem> STRAIGHT_LINE_VISUAL_RUNE = REGISTRATE
             .item("straight_line_visual_rune", properties -> new VisualRuneItem(properties, IVisual.STRAIGHT_LINE))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "visual_rune")))
             .recipe(new RuneRecipe<>(Items.STICK))
             .register();
 
@@ -224,6 +240,19 @@ public class AskwayModItems {
             .register();
 
     public static void register() {
+    }
+
+    public static List<ElementRuneItem> elems() {
+        List<ElementRuneItem> elems = new ArrayList<>();
+        elems.add(METAL_ELEMENT_RUNE.get());
+        elems.add(BOTANY_ELEMENT_RUNE.get());
+        elems.add(WATER_ELEMENT_RUNE.get());
+        elems.add(FIRE_ELEMENT_RUNE.get());
+        elems.add(EARTH_ELEMENT_RUNE.get());
+        elems.add(THUNDER_ELEMENT_RUNE.get());
+        elems.add(FREEZE_ELEMENT_RUNE.get());
+        elems.add(WIND_ELEMENT_RUNE.get());
+        return elems;
     }
 
     public static class RuneRecipe<T extends Item> implements NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> {

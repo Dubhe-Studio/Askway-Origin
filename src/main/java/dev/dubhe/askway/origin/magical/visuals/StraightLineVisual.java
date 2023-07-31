@@ -1,20 +1,21 @@
 package dev.dubhe.askway.origin.magical.visuals;
 
-import dev.dubhe.askway.origin.magical.casters.ICaster;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
-import dev.dubhe.askway.origin.magical.targets.ITarget;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class StraightLineVisual implements IVisual {
     @Override
-    public void display(ICaster caster, AbstractElement element, int energy, ITarget target) {
-        Vec3 pos = caster.getPos();
-        Vec3 pos2 = target.getPos();
-        Vec3 step = pos2.subtract(pos).multiply(1.0 / energy, 1.0 / energy, 1.0 / energy);
+    @OnlyIn(Dist.CLIENT)
+    public void display(Vec3 casterPos, Vec3 targetPos, AbstractElement element, int energy) {
+        Vec3 step = targetPos.subtract(casterPos).multiply(1.0 / energy, 1.0 / energy, 1.0 / energy);
         for (int i = 0; i < energy; i++) {
-            pos = pos.add(step);
-            target.getLevel().addParticle(new DustParticleOptions(element.getColor().getVec3f(), element.getColor().getAlphaF()),pos.x, pos.y, pos.z,0,0,0);
+            if (Minecraft.getInstance().level == null) continue;
+            Minecraft.getInstance().level.addParticle(new DustParticleOptions(element.getColor().getVec3f(), element.getColor().getAlphaF()), casterPos.x, casterPos.y, casterPos.z, 0, 0, 0);
+            casterPos = casterPos.add(step);
         }
     }
 

@@ -1,6 +1,5 @@
 package dev.dubhe.askway.origin.init;
 
-import com.tterrag.registrate.providers.loot.RegistrateEntityLootTables;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.dubhe.askway.origin.entities.MagicEntity;
 import dev.dubhe.askway.origin.entities.SpiritEntity;

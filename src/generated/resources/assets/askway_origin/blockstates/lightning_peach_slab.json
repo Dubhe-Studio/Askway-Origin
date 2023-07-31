@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "askway_origin:block/lightning_peach_slab"
+    },
+    "type=double": {
+      "model": "askway_origin:block/lightning_peach_planks"
+    },
+    "type=top": {
+      "model": "askway_origin:block/lightning_peach_slab_top"
+    }
+  }
+}

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "askway_origin:item/self_mode_rune"
-  }
+  "parent": "askway_origin:item/mode_rune"
 }

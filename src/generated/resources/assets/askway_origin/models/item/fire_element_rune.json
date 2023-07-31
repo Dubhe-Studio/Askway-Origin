@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "askway_origin:item/fire_element_rune"
-  }
+  "parent": "askway_origin:item/element_rune"
 }

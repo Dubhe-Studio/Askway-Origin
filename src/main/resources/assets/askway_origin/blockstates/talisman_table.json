@@ -10,11 +10,11 @@
     },
     "part=middle,facing=south": {
       "model": "askway_origin:block/talisman_table_middle",
-      "y": 180
+      "y": 90
     },
     "part=middle,facing=west": {
       "model": "askway_origin:block/talisman_table_middle",
-      "y": 90
+      "y": 180
     },
 
     "part=right,facing=east": {
@@ -27,11 +27,11 @@
     },
     "part=right,facing=south": {
       "model": "askway_origin:block/talisman_table_right",
-      "y": 180
+      "y": 90
     },
     "part=right,facing=west": {
       "model": "askway_origin:block/talisman_table_right",
-      "y": 90
+      "y": 180
     },
 
     "part=left,facing=east": {
@@ -44,11 +44,11 @@
     },
     "part=left,facing=south": {
       "model": "askway_origin:block/talisman_table_left",
-      "y": 180
+      "y": 90
     },
     "part=left,facing=west": {
       "model": "askway_origin:block/talisman_table_left",
-      "y": 90
+      "y": 180
     }
   }
 }

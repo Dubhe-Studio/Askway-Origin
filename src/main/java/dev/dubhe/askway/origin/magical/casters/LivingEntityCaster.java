@@ -3,9 +3,9 @@ package dev.dubhe.askway.origin.magical.casters;
 import dev.dubhe.askway.origin.magical.targets.EntityTarget;
 import dev.dubhe.askway.origin.magical.targets.ITarget;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class LivingEntityCaster implements ICaster {
@@ -32,7 +32,7 @@ public class LivingEntityCaster implements ICaster {
 
     @Override
     public DamageSource getDamageSource() {
-        return this.entity.damageSources().mobAttack(this.entity);
+        return this.entity.damageSources().source(DamageTypes.MAGIC, this.entity);
     }
 
     @Override

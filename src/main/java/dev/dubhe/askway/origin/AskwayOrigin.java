@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
 import dev.dubhe.askway.origin.events.handler.AskwayModEventHandler;
 import dev.dubhe.askway.origin.init.*;
+import dev.dubhe.askway.origin.network.MagicalVisualNetworkImpl;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -32,6 +33,7 @@ public class AskwayOrigin {
         AskwayModBlockEntities.register();
         AskwayModMenus.register();
         AskwayModMobEffects.register();
+        MagicalVisualNetworkImpl.register();
     }
 
     public static @NotNull ResourceLocation of(String str) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "askway_origin:block/lightning_peach_planks"
+  }
+}

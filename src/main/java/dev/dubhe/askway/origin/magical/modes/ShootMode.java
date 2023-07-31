@@ -23,8 +23,7 @@ public class ShootMode implements IMode {
             Vec3 vec3 = caster.getUpVector();
             magic.moveTo(caster.getPos());
             Vector3f vector3f = caster.getViewVector().toVector3f().rotate(new Quaternionf().setAngleAxis(0.0D, vec3.x, vec3.y, vec3.z));
-            magic.shoot(vector3f.x(), vector3f.y(), vector3f.z(), 1.6F, 1.0F);
+            magic.shoot(vector3f.x(), vector3f.y(), vector3f.z(), 0.8F, 1.0F);
         }
     }
-
 }

@@ -96,14 +96,6 @@ public class TalismanTableContainer implements Container, StackedContentsCompati
         return !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(9).isEmpty() && !this.items.get(10).isEmpty() && !this.items.get(11).isEmpty();
     }
 
-    /**
-     * 0符笔、1符墨、2符纸<p>
-     * 3、4、5效果<p>
-     * 6、7、8效果<p>
-     * 9元素<p>
-     * 10目标<p>
-     * 11方式
-     */
     @NotNull
     public ItemStack getResult() {
         if (!this.canCraft()) return ItemStack.EMPTY;
