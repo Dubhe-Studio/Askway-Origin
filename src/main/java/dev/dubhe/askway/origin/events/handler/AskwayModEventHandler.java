@@ -15,7 +15,6 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class AskwayModEventHandler {
     @SubscribeEvent
@@ -26,12 +25,6 @@ public class AskwayModEventHandler {
         if (Minecraft.getInstance().getConnection() == null) return;
         SpiritEntity entity = SpiritEntity.create(level, Minecraft.getInstance().getConnection().getPlayerInfo(player.getUUID()));
         entity.moveTo(player.position());
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void onItemColorRegister(RegisterColorHandlersEvent.Item event) {
-        AskwayModClientInit.registerItemColor(event);
     }
 
     @SubscribeEvent

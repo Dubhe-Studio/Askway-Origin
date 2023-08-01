@@ -95,13 +95,11 @@ public class TalismanTableMenu extends AbstractContainerMenu {
     public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
-        if (slot != null && slot.hasItem()) {
+        if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (pIndex == 0) {
-                this.access.execute((p_39378_, p_39379_) -> {
-                    itemstack1.getItem().onCraftedBy(itemstack1, p_39378_, pPlayer);
-                });
+                this.access.execute((p_39378_, p_39379_) -> itemstack1.getItem().onCraftedBy(itemstack1, p_39378_, pPlayer));
                 if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
                     return ItemStack.EMPTY;
                 }

@@ -4,7 +4,6 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import dev.dubhe.askway.origin.AskwayOrigin;
 import dev.dubhe.askway.origin.items.*;
 import dev.dubhe.askway.origin.magical.effects.IEffect;
 import dev.dubhe.askway.origin.magical.elements.AbstractElement;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -141,48 +139,80 @@ public class AskwayModItems {
 
     public static final RegistryEntry<ElementRuneItem> METAL_ELEMENT_RUNE = REGISTRATE
             .item("metal_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.METAL))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.IRON_INGOT))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> BOTANY_ELEMENT_RUNE = REGISTRATE
             .item("botany_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.BOTANY))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.STICK))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> WATER_ELEMENT_RUNE = REGISTRATE
             .item("water_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WATER))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.WATER_BUCKET))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> FIRE_ELEMENT_RUNE = REGISTRATE
             .item("fire_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FIRE))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.BLAZE_POWDER))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> EARTH_ELEMENT_RUNE = REGISTRATE
             .item("earth_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.EARTH))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.DIRT))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> THUNDER_ELEMENT_RUNE = REGISTRATE
             .item("thunder_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.THUNDER))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Blocks.LIGHTNING_ROD))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> FREEZE_ELEMENT_RUNE = REGISTRATE
             .item("freeze_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.FREEZE))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.ICE))
             .register();
 
     public static final RegistryEntry<ElementRuneItem> WIND_ELEMENT_RUNE = REGISTRATE
             .item("wind_element_rune", properties -> new ElementRuneItem(properties, AbstractElement.WIND))
+            .color(() -> () -> (pStack, pTintIndex) -> {
+                if (!(pStack.getItem() instanceof ElementRuneItem elemRune)) return 0;
+                return elemRune.getData().getColor().getInt() >> 8;
+            })
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "element_rune")))
             .recipe(new RuneRecipe<>(Items.PHANTOM_MEMBRANE))
             .register();

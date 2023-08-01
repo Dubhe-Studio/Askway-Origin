@@ -3,6 +3,7 @@ package dev.dubhe.askway.origin.blocks;
 import dev.dubhe.askway.origin.blocks.entities.TalismanTableBlockEntity;
 import dev.dubhe.askway.origin.blocks.state.properties.AskwayModBlockStateProperties;
 import dev.dubhe.askway.origin.blocks.state.properties.TalismanTablePart;
+import dev.dubhe.askway.origin.init.AskwayModBlocks;
 import dev.dubhe.askway.origin.menu.TalismanTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,11 +20,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -94,6 +97,42 @@ public class TalismanTableBlock extends HorizontalDirectionalBlock implements En
     public static TalismanTablePart getPart(BlockGetter pLevel, BlockPos pPos) {
         BlockState blockstate = pLevel.getBlockState(pPos);
         return blockstate.getBlock() instanceof TalismanTableBlock ? blockstate.getValue(PART) : null;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public BlockState updateShape(@NotNull BlockState pState, @NotNull Direction pDirection, @NotNull BlockState pNeighborState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pPos, @NotNull BlockPos pNeighborPos) {
+        if (!checkNeighbor(pLevel, pPos, pState.getValue(FACING), pState.getValue(PART)))
+            pLevel.destroyBlock(pPos, false);
+        return super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+    }
+
+    public static boolean checkNeighbor(@NotNull LevelAccessor pLevel, @NotNull BlockPos pPos, @NotNull Direction pDirection, @NotNull TalismanTablePart part) {
+        switch (part) {
+            case MIDDLE -> {
+                BlockPos pos1 = pPos.relative(TalismanTableBlock.rotation(pDirection, Rotation.COUNTERCLOCKWISE_90));
+                BlockState state1 = pLevel.getBlockState(pos1);
+                BlockPos pos2 = pPos.relative(TalismanTableBlock.rotation(pDirection, Rotation.CLOCKWISE_90));
+                BlockState state2 = pLevel.getBlockState(pos2);
+                return state1.is(AskwayModBlocks.TALISMAN_TABLE.get()) && state2.is(AskwayModBlocks.TALISMAN_TABLE.get()) && state1.getValue(PART) == TalismanTablePart.LEFT && state2.getValue(PART) == TalismanTablePart.RIGHT;
+            }
+            case RIGHT -> {
+                BlockPos pos = pPos.relative(TalismanTableBlock.rotation(pDirection, Rotation.COUNTERCLOCKWISE_90));
+                BlockState state = pLevel.getBlockState(pos);
+                return state.is(AskwayModBlocks.TALISMAN_TABLE.get()) && state.getValue(PART) == TalismanTablePart.MIDDLE;
+            }
+            default -> {
+                BlockPos pos = pPos.relative(TalismanTableBlock.rotation(pDirection, Rotation.CLOCKWISE_90));
+                BlockState state = pLevel.getBlockState(pos);
+                return state.is(AskwayModBlocks.TALISMAN_TABLE.get()) && state.getValue(PART) == TalismanTablePart.MIDDLE;
+            }
+        }
     }
 
     @Override
