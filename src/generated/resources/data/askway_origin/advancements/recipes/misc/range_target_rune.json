@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "askway_origin:exact_goal_rune"
+        "recipe": "askway_origin:range_target_rune"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "askway_origin:exact_goal_rune"
+      "askway_origin:range_target_rune"
     ]
   },
   "sends_telemetry_event": false

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "askway_origin:item/goal_rune"
+    "layer0": "askway_origin:item/target_rune"
   }
 }

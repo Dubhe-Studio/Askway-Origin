@@ -188,14 +188,14 @@ public class AskwayModItems {
             .register();
 
     public static final RegistryEntry<GoalRuneItem> EXACT_GOAL_RUNE = REGISTRATE
-            .item("exact_goal_rune", properties -> new GoalRuneItem(properties, IGoal.EXACT))
-            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "goal_rune")))
+            .item("exact_target_rune", properties -> new GoalRuneItem(properties, IGoal.EXACT))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "target_rune")))
             .recipe(new RuneRecipe<>(Items.ENDER_PEARL))
             .register();
 
     public static final RegistryEntry<GoalRuneItem> RANGE_GOAL_RUNE = REGISTRATE
-            .item("range_goal_rune", properties -> new GoalRuneItem(properties, IGoal.RANGE))
-            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "goal_rune")))
+            .item("range_target_rune", properties -> new GoalRuneItem(properties, IGoal.RANGE))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "target_rune")))
             .recipe(new RuneRecipe<>(Items.ARROW))
             .register();
 
