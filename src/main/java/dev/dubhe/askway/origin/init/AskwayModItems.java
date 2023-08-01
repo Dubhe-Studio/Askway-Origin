@@ -62,6 +62,13 @@ public class AskwayModItems {
             .register();
 
     public static final RegistryEntry<Item> COPPER_COIN = REGISTRATE.item("copper_coin", Item::new)
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ctx.get(), 4)
+                    .pattern("AAA")
+                    .pattern("A A")
+                    .pattern("AAA")
+                    .define('A', Items.COPPER_INGOT)
+                    .unlockedBy("has_item", RegistrateRecipeProvider.has(Items.COPPER_INGOT))
+                    .save(provider))
             .register();
 
     public static final RegistryEntry<SwordItem> COPPER_COIN_SWORD = REGISTRATE
@@ -87,6 +94,11 @@ public class AskwayModItems {
 
     public static final RegistryEntry<Item> TALISMAN_PAPER = REGISTRATE
             .item("talisman_paper", Item::new)
+            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.TOOLS, ctx.get())
+                    .requires(BARK.get())
+                    .requires(Items.PAPER)
+                    .unlockedBy("has_item", RegistrateRecipeProvider.has(BARK.get()))
+                    .save(provider))
             .properties(p -> p.stacksTo(16))
             .register();
 

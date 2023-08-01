@@ -12,7 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -32,5 +35,10 @@ public class AskwayModEventHandler {
         if (!(event.getItemStack().getItem() instanceof BlockItem item)) return;
         float time = item.getBlock().defaultDestroyTime();
         event.getToolTip().add(Component.literal("硬度：%s".formatted(time)).withStyle(ChatFormatting.RED).withStyle(Style.EMPTY.withItalic(false)));
+    }
+
+    @SubscribeEvent
+    public void onLivingEntityAttacked(EntityEvent event) {
+
     }
 }
