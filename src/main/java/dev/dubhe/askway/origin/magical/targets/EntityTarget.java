@@ -24,7 +24,7 @@ public class EntityTarget implements ITarget {
 
     @Override
     public void setPos(Vec3 pos) {
-        this.entity.moveTo(pos);
+        this.entity.teleportTo(pos.x(), pos.y(), pos.z());
     }
 
     @Override

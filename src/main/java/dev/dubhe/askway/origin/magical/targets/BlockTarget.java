@@ -25,9 +25,10 @@ public class BlockTarget implements ITarget {
     @Override
     public void setPos(Vec3 pos) {
         BlockState state = this.level.getBlockState(blockPos);
+        BlockPos newPos = new BlockPos((int) pos.x(), (int) pos.y(), (int) pos.z());
+        this.level.setBlock(newPos, state, 4);
         this.level.destroyBlock(this.blockPos, false);
-        this.blockPos = new BlockPos((int) pos.x(), (int) pos.y(), (int) pos.z());
-        this.level.setBlock(this.blockPos, state, 4);
+        this.blockPos = newPos;
     }
 
     public @NotNull BlockState getState() {
