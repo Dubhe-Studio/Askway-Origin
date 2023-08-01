@@ -3,6 +3,9 @@ package dev.dubhe.askway.origin.entities;
 import dev.dubhe.askway.origin.init.AskwayModEntities;
 import dev.dubhe.askway.origin.init.AskwayModItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
@@ -22,10 +25,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class SpiritEntity extends Monster {
-    private UUID playerInfo;
+    private static final EntityDataAccessor<Optional<UUID>> PLAYER_INFO = SynchedEntityData.defineId(SpiritEntity.class, EntityDataSerializers.OPTIONAL_UUID);
     protected Vec3 deltaMovementOnPreviousTick = Vec3.ZERO;
 
     @Override
@@ -39,6 +43,12 @@ public class SpiritEntity extends Monster {
         return new AttributeMap(SpiritEntity.createAttributes().build());
     }
 
+    @Override
+    protected void defineSynchedData() {
+        this.entityData.define(PLAYER_INFO, Optional.empty());
+        super.defineSynchedData();
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
@@ -50,21 +60,24 @@ public class SpiritEntity extends Monster {
 
     public SpiritEntity(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.playerInfo = null;
+        this.entityData.set(PLAYER_INFO, Optional.empty());
     }
 
     protected SpiritEntity(Level pLevel, UUID playerInfo) {
         super(AskwayModEntities.SPIRIT.get(), pLevel);
-        this.playerInfo = playerInfo;
+        this.entityData.set(PLAYER_INFO, Optional.ofNullable(playerInfo));
     }
 
     public UUID getPlayerInfo() {
-        return playerInfo;
+        return this.entityData.get(PLAYER_INFO).orElse(null);
+    }
+
+    public void setPlayerInfo(UUID playerInfo) {
+        this.entityData.set(PLAYER_INFO, Optional.ofNullable(playerInfo));
     }
 
     @Override
     protected void registerGoals() {
-
         this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 16));
         this.goalSelector.addGoal(3, new SpiritAttackGoal(this, 1.0D, false));
@@ -74,13 +87,13 @@ public class SpiritEntity extends Monster {
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
-        this.playerInfo = pCompound.getUUID("playerInfo");
+        this.setPlayerInfo(pCompound.getUUID("playerInfo"));
         super.readAdditionalSaveData(pCompound);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
-        pCompound.putUUID("playerInfo", this.playerInfo);
+        pCompound.putUUID("playerInfo", this.getPlayerInfo());
         super.addAdditionalSaveData(pCompound);
     }
 
