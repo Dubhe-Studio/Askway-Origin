@@ -13,6 +13,7 @@ public interface IEffect { // 法术效果
     IEffect EXPLOSION = EFFECT_CUSTOM_REGISTRY.register("explosion", new ExplosionEffect());
     IEffect LIGHTING = EFFECT_CUSTOM_REGISTRY.register("lightning", new LightningEffect());
     IEffect TREAT = EFFECT_CUSTOM_REGISTRY.register("treat", new TreatEffect());
+    IEffect ASTRAL_VISION = EFFECT_CUSTOM_REGISTRY.register("astral_vision", new AstralVisionEffect());
 
     /**
      * 展现法术效果

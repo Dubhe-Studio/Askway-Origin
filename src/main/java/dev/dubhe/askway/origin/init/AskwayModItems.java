@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import static dev.dubhe.askway.origin.AskwayOrigin.REGISTRATE;
 
@@ -274,25 +275,31 @@ public class AskwayModItems {
     public static final RegistryEntry<EffectRuneItem> TELEPORT_EFFECT_RUNE = REGISTRATE
             .item("teleport_effect_rune", properties -> new EffectRuneItem(properties, IEffect.TELEPORT))
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
-            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .recipe(new RuneRecipe<>(Items.CHORUS_FRUIT))
             .register();
 
     public static final RegistryEntry<EffectRuneItem> EXPLOSION_EFFECT_RUNE = REGISTRATE
             .item("explosion_effect_rune", properties -> new EffectRuneItem(properties, IEffect.EXPLOSION))
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
-            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .recipe(new RuneRecipe<>(Items.TNT))
             .register();
 
     public static final RegistryEntry<EffectRuneItem> LIGHTING_EFFECT_RUNE = REGISTRATE
             .item("lightning_effect_rune", properties -> new EffectRuneItem(properties, IEffect.LIGHTING))
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
-            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .recipe(new RuneRecipe<>(AskwayModBlocks.WILLOW_LEAVES::get))
             .register();
 
     public static final RegistryEntry<EffectRuneItem> TREAT_EFFECT_RUNE = REGISTRATE
-            .item("treat_effect_rune", properties -> new EffectRuneItem(properties, IEffect.LIGHTING))
+            .item("treat_effect_rune", properties -> new EffectRuneItem(properties, IEffect.TREAT))
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
-            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .recipe(new RuneRecipe<>(Items.GOLDEN_APPLE))
+            .register();
+
+    public static final RegistryEntry<EffectRuneItem> ASTRAL_VISION_RUNE = REGISTRATE
+            .item("astral_vision_effect_rune", properties -> new EffectRuneItem(properties, IEffect.ASTRAL_VISION))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
+            .recipe(new RuneRecipe<>(AskwayModBlocks.WILLOW_LEAVES::get))
             .register();
 
     public static final RegistryEntry<VisualRuneItem> STRAIGHT_LINE_VISUAL_RUNE = REGISTRATE
@@ -322,9 +329,13 @@ public class AskwayModItems {
     }
 
     public static class RuneRecipe<T extends Item> implements NonNullBiConsumer<DataGenContext<Item, T>, RegistrateRecipeProvider> {
-        private final ItemLike item;
+        private final Supplier<ItemLike> item;
 
         public RuneRecipe(ItemLike item) {
+            this.item = () -> item;
+        }
+
+        public RuneRecipe(Supplier<ItemLike> item) {
             this.item = item;
         }
 
@@ -334,7 +345,7 @@ public class AskwayModItems {
                     .pattern("A")
                     .pattern("B")
                     .define('A', EMPTY_RUNE.get())
-                    .define('B', this.item)
+                    .define('B', this.item.get())
                     .unlockedBy("has_item", RegistrateRecipeProvider.has(EMPTY_RUNE.get()))
                     .save(provider);
         }

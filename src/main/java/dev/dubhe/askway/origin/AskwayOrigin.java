@@ -28,11 +28,11 @@ public class AskwayOrigin {
         MinecraftForge.EVENT_BUS.register(new AskwayModEventHandler());
 
         AskwayModBlocks.register();
-        AskwayModItems.register();
         AskwayModEntities.register();
         AskwayModBlockEntities.register();
         AskwayModMenus.register();
         AskwayModMobEffects.register();
+        AskwayModItems.register();
         MagicalVisualNetworkImpl.register();
     }
 

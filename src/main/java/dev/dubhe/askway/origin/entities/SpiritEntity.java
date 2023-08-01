@@ -2,9 +2,7 @@ package dev.dubhe.askway.origin.entities;
 
 import dev.dubhe.askway.origin.init.AskwayModEntities;
 import dev.dubhe.askway.origin.init.AskwayModItems;
-import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.client.resources.DefaultPlayerSkin;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
@@ -24,8 +22,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 public class SpiritEntity extends Monster {
-    private final PlayerInfo playerInfo;
+    private UUID playerInfo;
     protected Vec3 deltaMovementOnPreviousTick = Vec3.ZERO;
 
     @Override
@@ -53,9 +53,13 @@ public class SpiritEntity extends Monster {
         this.playerInfo = null;
     }
 
-    protected SpiritEntity(Level pLevel, PlayerInfo playerInfo) {
+    protected SpiritEntity(Level pLevel, UUID playerInfo) {
         super(AskwayModEntities.SPIRIT.get(), pLevel);
         this.playerInfo = playerInfo;
+    }
+
+    public UUID getPlayerInfo() {
+        return playerInfo;
     }
 
     @Override
@@ -66,6 +70,18 @@ public class SpiritEntity extends Monster {
         this.goalSelector.addGoal(3, new SpiritAttackGoal(this, 1.0D, false));
 
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        this.playerInfo = pCompound.getUUID("playerInfo");
+        super.readAdditionalSaveData(pCompound);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        pCompound.putUUID("playerInfo", this.playerInfo);
+        super.addAdditionalSaveData(pCompound);
     }
 
     @Override
@@ -87,12 +103,8 @@ public class SpiritEntity extends Monster {
         return super.hurt(pSource, pAmount);
     }
 
-    public static SpiritEntity create(Level pLevel, PlayerInfo playerInfo) {
+    public static SpiritEntity create(Level pLevel, UUID playerInfo) {
         return new SpiritEntity(pLevel, playerInfo);
-    }
-
-    public ResourceLocation getSkinTextureLocation() {
-        return playerInfo == null ? DefaultPlayerSkin.getDefaultSkin(this.getUUID()) : playerInfo.getSkinLocation();
     }
 
     public Vec3 getDeltaMovementLerped(float pPatialTick) {

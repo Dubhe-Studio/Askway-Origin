@@ -6,7 +6,7 @@
       "item": "askway_origin:empty_rune"
     },
     "B": {
-      "item": "minecraft:tnt"
+      "item": "askway_origin:willow_leaves"
     }
   },
   "pattern": [
@@ -14,7 +14,7 @@
     "B"
   ],
   "result": {
-    "item": "askway_origin:explosion_effect_rune"
+    "item": "askway_origin:astral_vision_effect_rune"
   },
   "show_notification": true
 }

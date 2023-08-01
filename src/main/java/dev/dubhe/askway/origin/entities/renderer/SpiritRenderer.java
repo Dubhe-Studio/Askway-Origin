@@ -4,11 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.dubhe.askway.origin.entities.SpiritEntity;
 import dev.dubhe.askway.origin.entities.model.SpiritModel;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
+import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -18,6 +22,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public class SpiritRenderer extends HumanoidMobRenderer<SpiritEntity, SpiritModel<SpiritEntity>> {
     public SpiritRenderer(EntityRendererProvider.Context pContext, boolean pUseSlimModel) {
@@ -100,8 +106,16 @@ public class SpiritRenderer extends HumanoidMobRenderer<SpiritEntity, SpiritMode
     }
 
     @Override
-    public @NotNull ResourceLocation getTextureLocation(SpiritEntity pEntity) {
-        return pEntity.getSkinTextureLocation();
+    public @NotNull ResourceLocation getTextureLocation(@NotNull SpiritEntity pEntity) {
+        return getSkinTextureLocation(pEntity);
+    }
+
+    public ResourceLocation getSkinTextureLocation(SpiritEntity pEntity) {
+        UUID uuid = pEntity.getPlayerInfo();
+        ClientPacketListener listener = Minecraft.getInstance().getConnection();
+        PlayerInfo info = null;
+        if (uuid != null && listener != null) info = Minecraft.getInstance().getConnection().getPlayerInfo(uuid);
+        return info != null ? info.getSkinLocation() : DefaultPlayerSkin.getDefaultSkin(pEntity.getUUID());
     }
 
     @Override
