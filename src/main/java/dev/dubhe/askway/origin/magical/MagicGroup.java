@@ -75,6 +75,15 @@ public class MagicGroup {
     }
 
     /**
+     * 设定法术组充能
+     *
+     * @param energy 充能
+     */
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    /**
      * 获取法术组效果
      *
      * @return 效果

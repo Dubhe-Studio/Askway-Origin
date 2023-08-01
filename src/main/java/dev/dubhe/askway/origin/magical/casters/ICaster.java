@@ -31,6 +31,11 @@ public interface ICaster { // 施法者
      */
     Vec3 getPos();
 
+    /**
+     * @param pos 坐标
+     */
+    void setPos(Vec3 pos);
+
     Vec3 getViewVector();
 
     Vec3 getUpVector();

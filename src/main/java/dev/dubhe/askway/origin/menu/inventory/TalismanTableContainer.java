@@ -121,7 +121,7 @@ public class TalismanTableContainer implements Container, StackedContentsCompati
             mode = item.getData();
         }
         if (element == null || goal == null || mode == null) return ItemStack.EMPTY;
-        MagicGroup magic = new MagicGroup(element, 15);
+        MagicGroup magic = new MagicGroup(element, 0);
         for (ItemStack stack : effectStacks) {
             if (!(stack.getItem() instanceof EffectRuneItem item)) continue;
             magic.addEffects(item.getData());

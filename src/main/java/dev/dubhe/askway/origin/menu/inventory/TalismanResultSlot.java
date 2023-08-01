@@ -1,5 +1,6 @@
 package dev.dubhe.askway.origin.menu.inventory;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.RecipeHolder;
@@ -69,7 +70,7 @@ public class TalismanResultSlot extends Slot {
         }
         for (int i = 0; i < 2; ++i) {
             ItemStack stack = this.craftSlots.getItem(i);
-            stack.setDamageValue(stack.getDamageValue() - 1);
+            if (pPlayer instanceof ServerPlayer serverPlayer) stack.hurt(1, pPlayer.getRandom(), serverPlayer);
         }
     }
 }

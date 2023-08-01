@@ -23,6 +23,11 @@ public class EntityTarget implements ITarget {
     }
 
     @Override
+    public void setPos(Vec3 pos) {
+        this.entity.moveTo(pos);
+    }
+
+    @Override
     public Level getLevel() {
         return entity.level();
     }

@@ -27,6 +27,11 @@ public interface ITarget { // 目标
     Vec3 getPos();
 
     /**
+     * @param pos 坐标
+     */
+    void setPos(Vec3 pos);
+
+    /**
      * @return 目标所在世界
      */
     Level getLevel();

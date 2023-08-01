@@ -229,6 +229,30 @@ public class AskwayModItems {
             .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
             .register();
 
+    public static final RegistryEntry<EffectRuneItem> TELEPORT_EFFECT_RUNE = REGISTRATE
+            .item("teleport_effect_rune", properties -> new EffectRuneItem(properties, IEffect.TELEPORT))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
+            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .register();
+
+    public static final RegistryEntry<EffectRuneItem> EXPLOSION_EFFECT_RUNE = REGISTRATE
+            .item("explosion_effect_rune", properties -> new EffectRuneItem(properties, IEffect.EXPLOSION))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
+            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .register();
+
+    public static final RegistryEntry<EffectRuneItem> LIGHTING_EFFECT_RUNE = REGISTRATE
+            .item("lightning_effect_rune", properties -> new EffectRuneItem(properties, IEffect.LIGHTING))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
+            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .register();
+
+    public static final RegistryEntry<EffectRuneItem> TREAT_EFFECT_RUNE = REGISTRATE
+            .item("treat_effect_rune", properties -> new EffectRuneItem(properties, IEffect.LIGHTING))
+            .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "effect_rune")))
+            .recipe(new RuneRecipe<>(Items.WOODEN_PICKAXE))
+            .register();
+
     public static final RegistryEntry<VisualRuneItem> STRAIGHT_LINE_VISUAL_RUNE = REGISTRATE
             .item("straight_line_visual_rune", properties -> new VisualRuneItem(properties, IVisual.STRAIGHT_LINE))
             .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), provider.modLoc("item/" + "visual_rune")))

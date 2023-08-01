@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlockTarget implements ITarget {
     private final Level level;
-    private final BlockPos blockPos;
+    private BlockPos blockPos;
 
     public BlockTarget(Level level, BlockPos blockPos) {
         this.level = level;
@@ -20,6 +20,14 @@ public class BlockTarget implements ITarget {
     @Override
     public @NotNull Vec3 getPos() {
         return blockPos.getCenter();
+    }
+
+    @Override
+    public void setPos(Vec3 pos) {
+        BlockState state = this.level.getBlockState(blockPos);
+        this.level.destroyBlock(this.blockPos, false);
+        this.blockPos = new BlockPos((int) pos.x(), (int) pos.y(), (int) pos.z());
+        this.level.setBlock(this.blockPos, state, 4);
     }
 
     public @NotNull BlockState getState() {

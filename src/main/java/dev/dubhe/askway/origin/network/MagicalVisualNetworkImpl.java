@@ -16,6 +16,8 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class MagicalVisualNetworkImpl {
@@ -45,11 +47,12 @@ public class MagicalVisualNetworkImpl {
         }
 
         public static void toBuf(MagicalVisualPack pack, FriendlyByteBuf buf) {
-            buf.writeBytes(GSON.toJson(pack).getBytes(StandardCharsets.US_ASCII));
+            buf.writeUtf(GSON.toJson(pack));
         }
 
         public static MagicalVisualPack fromBuf(FriendlyByteBuf buf) {
-            return GSON.fromJson(new String(buf.array(), StandardCharsets.US_ASCII).substring(1), MagicalVisualPack.class);
+            String res = buf.readUtf();
+            return GSON.fromJson(res.substring(res.indexOf('{')), MagicalVisualPack.class);
         }
 
         public static void consumer(MagicalVisualPack pack, Supplier<NetworkEvent.Context> context) {
