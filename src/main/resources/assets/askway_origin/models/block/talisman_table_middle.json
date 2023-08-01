@@ -1,20 +1,35 @@
 {
 	"credit": "Made by Gugle",
+	"texture_size": [32, 32],
 	"textures": {
-		"0": "askway_origin:block/lightning_peach_planks",
-		"particle": "askway_origin:block/lightning_peach_planks"
+		"particle": "askway_origin:block/talisman_table",
+		"table": "askway_origin:block/talisman_table"
 	},
 	"elements": [
 		{
-			"from": [0, 0, 0],
+			"from": [0, 14, 0],
 			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 13, 0]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+				"north": {"uv": [4, 8, 12, 9], "texture": "#table", "cullface": "north"},
+				"east": {"uv": [4, 8, 12, 9], "texture": "#table", "cullface": "east"},
+				"south": {"uv": [4, 8, 12, 9], "texture": "#table", "cullface": "south"},
+				"west": {"uv": [4, 8, 12, 9], "texture": "#table", "cullface": "west"},
+				"up": {"uv": [4, 0, 12, 8], "rotation": 90, "texture": "#table"},
+				"down": {"uv": [4, 0, 12, 8], "rotation": 90, "texture": "#table"}
+			}
+		},
+		{
+			"from": [2, 9, 0],
+			"to": [14, 11, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 8, 0]},
+			"faces": {
+				"north": {"uv": [5, 8, 11, 9], "texture": "#table", "cullface": "north"},
+				"east": {"uv": [4, 8, 12, 9], "texture": "#table"},
+				"south": {"uv": [5, 8, 11, 9], "texture": "#table", "cullface": "south"},
+				"west": {"uv": [4, 8, 12, 9], "texture": "#table"},
+				"up": {"uv": [4, 1, 12, 7], "rotation": 90, "texture": "#table"},
+				"down": {"uv": [4, 1, 12, 7], "rotation": 90, "texture": "#table"}
 			}
 		}
 	]
