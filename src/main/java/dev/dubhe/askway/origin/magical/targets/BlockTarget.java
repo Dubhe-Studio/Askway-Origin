@@ -26,7 +26,7 @@ public class BlockTarget implements ITarget {
     public void setPos(Vec3 pos) {
         BlockState state = this.level.getBlockState(blockPos);
         BlockPos newPos = new BlockPos((int) pos.x(), (int) pos.y(), (int) pos.z());
-        this.level.setBlock(newPos, state, 4);
+        this.level.setBlockAndUpdate(newPos, state);
         this.level.destroyBlock(this.blockPos, false);
         this.blockPos = newPos;
     }
